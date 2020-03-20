@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymeleaf</title>
+</head>
+<body>
+	<!-- 	<h2 th:text="${student.name}">Hello Thymeleaf</h2>
+
+	<ol>
+		<li th:each="st:${list}" th:text="${st.name}"></li>
+	</ol> -->
+
+	<h2>
+		Hello Thymeleaf <br> <a href="login?type=1">Login</a><br> <a
+			href="login?type=0">Logout</a>
+	</h2>
+
+	<img alt="spring logo" src="spring.jpg">
+
+	<form action="/" method="post">
+		no:<input type="text" name="no"> <input type="submit">
+	</form>
+
+	<table border="1">
+		<tr>
+			<th>Student No</th>
+			<th>Student Name</th>
+			<th>Age</th>
+		</tr>
+		<tr th:each="st:${list}">
+			<td th:text="${st.no}"></td>
+			<td th:text="${st.name}"></td>
+			<td th:text="${st.age}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 # 上传Github
 
+**com.nchu.recom.test包为测试用的包，是老师上课所用的代码，可以直接删掉，还有static/spring.jpg和templates/home.html也都可以删掉**
+
 …or create a new repository on the command line
 
 ```bash
