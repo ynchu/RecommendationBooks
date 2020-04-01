@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>专业课程参考书推荐系统</title>
+</head>
+<body>
+
+<table border="1" style="border-collapse:collapse;">
+    <tr>
+        <th>用户编号</th>
+        <th>用户昵称</th>
+        <th>用户密码</th>
+        <th>用户性别</th>
+        <th>用户邮箱</th>
+        <th>用户电话</th>
+    </tr>
+    <!--/*@thymesVar id="list" type="java.util.List<User>"*/-->
+    <tr th:each="user:${list}">
+        <!--/*@thymesVar id="user" type="com.nchu.recom.bean.User"*/-->
+        <td th:text="${user.userId}"></td>
+        <td th:text="${user.nickName}"></td>
+        <td th:text="${user.pwd}"></td>
+        <td th:text="${user.sex}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.tel}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
