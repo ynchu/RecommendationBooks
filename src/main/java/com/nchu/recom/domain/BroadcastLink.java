@@ -1,4 +1,4 @@
-package com.nchu.recom.bean;
+package com.nchu.recom.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

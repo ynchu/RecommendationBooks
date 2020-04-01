@@ -14,12 +14,12 @@ import java.util.Map;
  */
 @ControllerAdvice
 public class RecomControllerExceptionHandler {
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(BaseException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, Object> handleStudentNotFound(UserNotFoundException e) {
+    public Map<String, Object> handleStudentNotFound(BaseException e) {
         Map<String, Object> map = new HashMap<>();
-        map.put("code", e.getErrCode());
+        map.put("code", e.getCode());
         map.put("message", e.getMessage());
         return map;
     }

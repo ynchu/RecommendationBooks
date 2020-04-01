@@ -1,18 +1,18 @@
 package com.nchu.recom.execption;
 
 /**
- * 用户未找到异常类
+ * 违规词未找到异常类
  *
  * @author Administrator
  */
-public class UserNotFoundException extends BaseException {
+public class VioDicNotFoundException extends BaseException {
     @Override
     public String getCode() {
-        return "101";
+        return "201";
     }
 
     @Override
     public String getMessage() {
-        return "用户未找到";
+        return "违规词未找到";
     }
 }

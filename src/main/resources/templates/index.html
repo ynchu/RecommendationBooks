@@ -17,7 +17,7 @@
     </tr>
     <!--/*@thymesVar id="list" type="java.util.List<User>"*/-->
     <tr th:each="user:${list}">
-        <!--/*@thymesVar id="user" type="com.nchu.recom.bean.User"*/-->
+        <!--/*@thymesVar id="user" type="com.nchu.recom.domain.User"*/-->
         <td th:text="${user.userId}"></td>
         <td th:text="${user.nickName}"></td>
         <td th:text="${user.pwd}"></td>

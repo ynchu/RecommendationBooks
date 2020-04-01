@@ -26,7 +26,7 @@ public class SwaggerUIConfig {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("专业课程参考书推荐系统\r\n" + "")
+        return new ApiInfoBuilder().title("专业课程参考书推荐系统\r\n")
                 .description("1720127-易天明负责部分：审核管理，评论管理，违规词管理，广播通知")
                 .version("1.0").build();
     }
