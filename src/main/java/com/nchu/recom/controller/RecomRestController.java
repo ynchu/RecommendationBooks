@@ -1,9 +1,6 @@
 package com.nchu.recom.controller;
 
-import com.nchu.recom.domain.UserFactory;
-import com.nchu.recom.domain.User;
-import com.nchu.recom.domain.VioDic;
-import com.nchu.recom.domain.VioDicFactory;
+import com.nchu.recom.domain.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,9 +23,12 @@ public class RecomRestController {
     @Autowired
     private VioDicFactory vioDicFactory;
 
+    @Autowired
+    private BroadcastFactory broadcastFactory;
+
     @ApiOperation("查找所有用户")
     @GetMapping("/users")
-    public List<User> getUsers() throws Exception {
+    public List<User> getUsers() {
         return userFactory.getUsers();
     }
 
@@ -40,7 +40,7 @@ public class RecomRestController {
 
     @ApiOperation("找到所有的违规词")
     @GetMapping("/badwords")
-    public List<VioDic> getBadWords() throws Exception {
+    public List<VioDic> getBadWords() {
         return vioDicFactory.getVioDics();
     }
 
@@ -50,5 +50,19 @@ public class RecomRestController {
                                        @PathVariable String keyword)
             throws Exception {
         return vioDicFactory.findByKeyword(keyword);
+    }
+
+    @ApiOperation("找到所有的广播通知信息")
+    @GetMapping("/broadcasts")
+    public List<Broadcast> getBroadcasts() {
+        return broadcastFactory.getBroadcasts();
+    }
+
+    @ApiOperation("直接精确查找违规词")
+    @GetMapping("/broadcasts/{id}")
+    public Broadcast getBroadcastByKeyWord(@ApiParam("广播通知id")
+                                           @PathVariable String id)
+            throws Exception {
+        return broadcastFactory.findById(id);
     }
 }

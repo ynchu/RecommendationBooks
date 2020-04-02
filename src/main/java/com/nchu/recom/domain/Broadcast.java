@@ -21,7 +21,7 @@ public class Broadcast {
     @ApiModelProperty(notes = "广播通知内容")
     private String content;
 
-    @ApiModelProperty(notes = "发松通知时间")
+    @ApiModelProperty(notes = "发送通知时间")
     private Timestamp time;
 
     public String getUserId() {

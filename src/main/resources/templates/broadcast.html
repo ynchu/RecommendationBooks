@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>广播通知</title>
+</head>
+<body>
+
+<table border="1" style="border-collapse:collapse;">
+  <tr>
+    <th>用户编号</th>
+    <th>广播通知编号</th>
+    <th>广播通知内容</th>
+    <th>发送通知时间</th>
+  </tr>
+  <!--/*@thymesVar id="list" type="java.util.List<com.nchu.recom.domain.Broadcast>"*/-->
+  <tr th:each="broadcast:${list}">
+    <!--/*@thymesVar id="user" type="com.nchu.recom.domain.Broadcast"*/-->
+    <td th:text="${broadcast.getUserId()}"></td>
+    <td th:text="${broadcast.getBroadcastId()}"></td>
+    <td th:text="${broadcast.getContent()}"></td>
+    <td th:text="${broadcast.getTime()}"></td>
+  </tr>
+</table>
+
+</body>
+</html>
