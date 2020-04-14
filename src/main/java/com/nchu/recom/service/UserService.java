@@ -36,7 +36,23 @@ public interface UserService {
      * 添加用户
      *
      * @param user 用户
-     * @return User
+     * @return Boolean
      */
-    Boolean addUser(User user);
+    Boolean insertUser(User user);
+
+    /**
+     * 修改用户
+     *
+     * @param user 用户
+     * @return Boolean
+     */
+    Boolean updateUser(User user);
+
+    /**
+     * 根据用户id删除用户
+     *
+     * @param id 用户id
+     * @return Boolean
+     */
+    Boolean deleteUserById(int id);
 }

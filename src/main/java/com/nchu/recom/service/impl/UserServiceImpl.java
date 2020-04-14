@@ -5,16 +5,12 @@ import com.nchu.recom.repository.UserRepository;
 import com.nchu.recom.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    @Resource
     private UserRepository userRepository;
 
     @Autowired
@@ -61,8 +57,31 @@ public class UserServiceImpl implements UserService {
      * @return Boolean
      */
     @Override
-    public Boolean addUser(User user) {
+    public Boolean insertUser(User user) {
         return userRepository.insertUser(user.getName(),
                 user.getPwd(), user.getSex(), user.getEmail(), user.getTel());
+    }
+
+    /**
+     * 修改用户
+     *
+     * @param user 用户
+     * @return Boolean
+     */
+    @Override
+    public Boolean updateUser(User user) {
+        return userRepository.updateUser(user.getId(), user.getName(), user.getPwd(), user.getSex(),
+                user.getEmail(), user.getTel());
+    }
+
+    /**
+     * 根据用户id删除用户
+     *
+     * @param id 用户id
+     * @return Boolean
+     */
+    @Override
+    public Boolean deleteUserById(int id) {
+        return userRepository.deleteUserById(id);
     }
 }

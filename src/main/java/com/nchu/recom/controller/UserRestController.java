@@ -34,13 +34,27 @@ public class UserRestController {
         return new ResponseEntity<Collection<User>>(users, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-    public Boolean addUser(@Valid @RequestBody User user, BindingResult result) throws UserAddException {
+    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
+    public Boolean insertUser(@Valid @RequestBody User user, BindingResult result) throws UserAddException {
         if (result.hasErrors()) {
             System.out.println("添加用户失败");
             throw new UserAddException(401, "用户存储失败");
         }
         System.out.println("添加用户");
-        return userService.addUser(user);
+        return userService.insertUser(user);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    public Boolean updateUser(@Valid @RequestBody User user) {
+        System.out.println("修改用户");
+        return userService.updateUser(user);
+    }
+
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
+    public Boolean deleteUserById(@Valid @RequestBody int id) {
+        System.out.println("id = " + id);
+        System.out.println("根据用户id删除用户");
+        return userService.deleteUserById(id);
     }
 }
