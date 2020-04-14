@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>违规词上传</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      margin: 0 auto;
+      padding: 0;
+      background-color: #F1F1F1;
+    }
+
+    /* 顶部 */
+    #top {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      text-align: center;
+    }
+
+
+    .topson1 {
+      width: 70%;
+      height: 70px;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 50px;
+      font-family: "华文行楷";
+    }
+
+
+    /* 中部 */
+    #center {
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    /* 表格 */
+    table,
+    tr,
+    td {
+      text-align: center;
+      vertical-align: top;
+      margin: 5px;
+    }
+
+    .tab {
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 10px;
+    }
+
+    /*提示标签*/
+    .pro {
+      font-size: 25px;
+      font-family: "黑体";
+    }
+
+    /* 输入框 */
+    .inp {
+      width: 400px;
+      height: 35px;
+      border-radius: 35px;
+      border: none;
+      outline: none;
+      box-shadow: 0px 0px 5px #B3B3B3 inset;
+      padding-left: 10px;
+      font-size: 20px;
+    }
+
+    /* 文本框 */
+    .ta {
+      width: 900px;
+      height: 500px;
+      min-width: 400px;
+      min-height: 300px;
+      font-size: 16px;
+      padding: 7px;
+    }
+
+    /* 提交按钮 */
+    .bttijiao {
+      margin: 20px;
+      width: 100px;
+      height: 35px;
+      border-radius: 35px;
+      border: none;
+      outline: none;
+      background-color: #CDC9C9;
+      box-shadow: 2px 2px 5px #B3B3B3;
+    }
+
+    .bttijiao:hover {
+      background-color: #2ECDF7;
+    }
+  </style>
+</head>
+<body>
+<div id="center">
+  <!--  TODO 未添加提交位置-->
+  <form id="form1" action="#" method="post">
+    <table class="tab">
+      <tr class="mytr">
+        <td>
+          <div class="model">请选择输入模式:</div>
+          <label for="raone"><input checked name="mode" id="raone" type="radio" value="0"
+                                    onclick="radioOnClick(this)">一次输入一个</label>
+          <br>
+          <label for="ramore"><input name="mode" id="ramore" type="radio" value="1"
+                                     onclick="radioOnClick(this)">一次输入多个</label>
+          <br>
+        </td>
+      </tr>
+      <tr class="mytr" id="trone">
+        <td>
+          <div class="pro">请输入违规词（一次一个）</div>
+          <input name="inputOne" id="inp" class="inp" placeholder="请输入违规词（一次一个）">
+        </td>
+      </tr>
+      <tr class="mytr" id="trmore">
+        <td>
+          <div class="pro">请输入违规词（一行一个）</div>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="ta"></label><textarea maxlength="1024" placeholder="请输入正文(最多1024字节)" name="context" id="ta"
+                                                class="ta rig"></textarea>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <input class="bttijiao" onclick="save()" type="button" value="提交">
+  </form>
+</div>
+
+
+<script>
+    window.onload = function () {
+        var radio = document.getElementById("raone");
+        if (radio.checked === true) {
+            document.getElementById("trone").hidden = false;
+            document.getElementById("trmore").hidden = true;
+        } else {
+            document.getElementById("trone").hidden = true;
+            document.getElementById("trmore").hidden = false;
+        }
+    };
+
+    function radioOnClick(e) {
+        if (e.id === "raone") {
+            document.getElementById("trone").hidden = false;
+            document.getElementById("trmore").hidden = true;
+        } else if (e.id === "ramore") {
+            document.getElementById("trone").hidden = true;
+            document.getElementById("trmore").hidden = false;
+        }
+    }
+
+    // 回车转<br/>
+    function getFormatCode(strValue) {
+        return strValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\s/g, ' ')
+            .replace(/"/g, "&quot;");
+    }
+
+    function check(str) {
+        return !(str === null || "" === str);
+    }
+
+    function save() {
+        console.log("保存");
+        let inp = document.getElementById("inp").value;
+        let ta = document.getElementById("ta").value;
+
+        console.log(inp + "   " + ta);
+
+        // 将保存的值设为1
+        if (check(getFormatCode(inp)) || check(getFormatCode(ta))) {
+            document.getElementById("inp").value = getFormatCode(inp);
+            document.getElementById("ta").value = getFormatCode(ta);
+            document.getElementById("form1").submit();
+            return true;
+        }
+        alert("违规词不能为空");
+        return false;
+    }
+</script>
+
+</body>
+</html>

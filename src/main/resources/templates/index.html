@@ -1,31 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="https://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+
 <head>
-  <meta charset="UTF-8">
-  <title>专业课程参考书推荐系统</title>
+  <title>首页</title>
 </head>
+
 <body>
 
-<table border="1" style="border-collapse:collapse;">
-  <tr>
-    <th>用户编号</th>
-    <th>用户昵称</th>
-    <th>用户密码</th>
-    <th>用户性别</th>
-    <th>用户邮箱</th>
-    <th>用户电话</th>
-  </tr>
-  <!--/*@thymesVar id="list" type="java.util.List<com.nchu.recom.domain.User>"*/-->
-  <tr th:each="user:${list}">
-    <!--/*@thymesVar id="user" type="com.nchu.recom.domain.User"*/-->
-    <td th:text="${user.userId}"></td>
-    <td th:text="${user.nickName}"></td>
-    <td th:text="${user.pwd}"></td>
-    <td th:text="${user.sex}"></td>
-    <td th:text="${user.email}"></td>
-    <td th:text="${user.tel}"></td>
-  </tr>
-</table>
+<h2 th:text="#{welcome}">首页</h2>
+<div class="row">
+  <div class="col-md-12">
+    <img class="img-responsive" src="../static/resources/images/pets.png"
+         th:src="@{/resources/images/pets.png}"/>
+  </div>
+</div>
 
 </body>
+
 </html>

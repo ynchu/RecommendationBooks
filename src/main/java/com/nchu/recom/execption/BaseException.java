@@ -5,19 +5,28 @@ package com.nchu.recom.execption;
  *
  * @author Administrator
  */
-public abstract class BaseException extends Exception {
+public class BaseException extends Exception {
     /**
-     * 获取错误码
-     *
-     * @return String
+     * 错误码
      */
-    public abstract String getCode();
+    protected int code;
 
     /**
-     * 获取错误信息
-     *
-     * @return String
+     * 错误信息
      */
+    protected String message;
+
+    public BaseException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
     @Override
-    public abstract String getMessage();
+    public String getMessage() {
+        return message;
+    }
 }

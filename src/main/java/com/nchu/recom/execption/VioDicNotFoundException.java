@@ -6,13 +6,7 @@ package com.nchu.recom.execption;
  * @author Administrator
  */
 public class VioDicNotFoundException extends BaseException {
-    @Override
-    public String getCode() {
-        return "201";
-    }
-
-    @Override
-    public String getMessage() {
-        return "违规词未找到";
+    public VioDicNotFoundException(int code, String message) {
+        super(code, message);
     }
 }

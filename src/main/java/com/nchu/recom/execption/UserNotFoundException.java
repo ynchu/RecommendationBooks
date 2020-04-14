@@ -6,13 +6,7 @@ package com.nchu.recom.execption;
  * @author Administrator
  */
 public class UserNotFoundException extends BaseException {
-    @Override
-    public String getCode() {
-        return "101";
-    }
-
-    @Override
-    public String getMessage() {
-        return "用户未找到";
+    public UserNotFoundException(int code, String message) {
+        super(code, message);
     }
 }

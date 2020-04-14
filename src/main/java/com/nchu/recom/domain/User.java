@@ -2,46 +2,54 @@ package com.nchu.recom.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Administrator
- */
-@Component
 @ApiModel(description = "用户实体类")
+@Component
+@Table(value = "user")
 public class User {
     @ApiModelProperty(notes = "用户编号")
-    String userId;
+    @Id
+    @Column(value = "id")
+    private int id;
 
     @ApiModelProperty(notes = "用户昵称")
-    String nickName;
+    @Column(value = "name")
+    private String name;
 
     @ApiModelProperty(notes = "用户密码")
-    String pwd;
+    @Column(value = "pwd")
+    private String pwd;
 
     @ApiModelProperty(notes = "用户性别")
-    String sex;
+    @Column(value = "sex")
+    private String sex;
 
     @ApiModelProperty(notes = "用户邮箱")
-    String email;
+    @Column(value = "email")
+    private String email;
 
     @ApiModelProperty(notes = "用户电话")
-    String tel;
+    @Column(value = "tel")
+    private String tel;
 
-    public String getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getName() {
+        return name;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPwd() {

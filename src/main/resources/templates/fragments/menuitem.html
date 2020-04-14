@@ -1,0 +1,7 @@
+<li th:fragment="menuItem (path,active,title,icon,text)" class="active"
+    th:class="${active==menu ? 'active' : ''}">
+  <a th:href="@{__${path}__}" th:title="${title}">
+    <span th:class="'fas  fa-'+${icon} +' fa-2x'" aria-hidden="true"></span>
+    <span th:text="${text}">Template</span>
+  </a>
+</li>

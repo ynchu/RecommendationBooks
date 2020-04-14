@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'settings')}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>设置</title>
+</head>
+
+<body>
+<div style="width: 100%">
+  <!-- 左侧菜单栏 -->
+  <div id="main-container">
+    <div id="sidebar" class="col-md-2 column">
+      <!-- 创建菜单树 -->
+      <div class="col-md-12">
+
+        <!-- 功能按钮组 -->
+        <ul class="nav justify-content-center" id="app">
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" id="tongzhi" class="list-group-item list-group-item-action"
+                      v-on:click="change('tongzhi')">通知界面
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('xinjiantongzhi')">新建通知
+              </button>
+            </div>
+          </li>
+          <li class=" nav-item
+              ">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('commentsmanage')">
+                评论管理
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('uploadbookmanage')">审核上传书籍
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('badwordupload')">违规词上传
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('badwordmanage')">违规词管理
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-10 column">
+      <!--      <div class="breadcrumbs" id="breadcrumbs">-->
+      <!--        &lt;!&ndash; 面包屑导航 &ndash;&gt;-->
+      <!--        <ul class="breadcrumb">-->
+      <!--          <li>-->
+      <!--            <a href="${base}toLoginIndex">Home</a>-->
+      <!--          </li>-->
+      <!--          <li class="active">Dashboard</li>-->
+      <!--        </ul>-->
+      <!--      </div>-->
+
+      <!-- 内容展示页 -->
+      <div>
+        <iframe id="iframe-page-content" src="login.html" frameborder="none"
+                style="width: 100%;height: 800px;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            message: "通知界面message"
+        },
+        methods: {
+            change: function (source) {
+                document.getElementById("iframe-page-content").src = source;
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
