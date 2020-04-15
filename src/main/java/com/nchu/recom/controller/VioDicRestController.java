@@ -1,16 +1,15 @@
 package com.nchu.recom.controller;
 
 import com.nchu.recom.domain.VioDic;
+import com.nchu.recom.domain.VioDicMerge;
 import com.nchu.recom.service.VioDicService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Api("This is a RESTful Controller Demo")
@@ -34,6 +33,23 @@ public class VioDicRestController {
         }
         return new ResponseEntity<Collection<VioDic>>(vioDics, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
+    public Boolean insertVioDic(@Valid @RequestBody VioDic vioDic) {
+        System.out.println("添加违规词");
+        return vioDicService.insertVioDic(vioDic);
+    }
 
-//    TODO 其他操作一系列
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    public Boolean updateVioDic(@Valid @RequestBody VioDicMerge vioDicMerge) {
+        System.out.println("修改违规词");
+        System.out.println(vioDicMerge.getOldVioDic() + " - " + vioDicMerge.getNewVioDic());
+        return vioDicService.updateVioDic(vioDicMerge.getOldVioDic(), vioDicMerge.getNewVioDic());
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
+    public Boolean deleteVioDic(@Valid @RequestBody VioDic vioDic) {
+        System.out.println("删除违规词");
+        return vioDicService.deleteVioDic(vioDic);
+    }
 }

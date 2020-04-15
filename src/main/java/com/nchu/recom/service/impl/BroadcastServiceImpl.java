@@ -35,7 +35,41 @@ public class BroadcastServiceImpl implements BroadcastService {
      * @return Broadcast
      */
     @Override
-    public Broadcast findById(String id) {
+    public Broadcast findById(int id) {
         return broadcastRepository.findByBroadcastId(id);
     }
+
+    /**
+     * 添加通知
+     *
+     * @param broadcast 通知实体
+     * @return Boolean
+     */
+    @Override
+    public Boolean insertBroadcast(Broadcast broadcast) {
+        return broadcastRepository.insertBroadcast(broadcast.getUserId(), broadcast.getContent(), broadcast.getTime());
+    }
+
+    /**
+     * 修改通知
+     *
+     * @param broadcast 通知实体
+     * @return Boolean
+     */
+    @Override
+    public Boolean updateBroadcast(Broadcast broadcast) {
+        return broadcastRepository.updateBroadcast(broadcast.getId(), broadcast.getUserId(), broadcast.getContent(), broadcast.getTime());
+    }
+
+    /**
+     * 删除通知
+     *
+     * @param broadcast 通知实体
+     * @return Boolean
+     */
+    @Override
+    public Boolean deleteBroadcast(Broadcast broadcast) {
+        return broadcastRepository.deleteBroadcast(broadcast.getId());
+    }
+
 }

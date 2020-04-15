@@ -1,6 +1,7 @@
 package com.nchu.recom.service;
 
 import com.nchu.recom.domain.VioDic;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Collection;
 
@@ -27,6 +28,14 @@ public interface VioDicService {
      * @return Boolean
      */
     Boolean insertVioDic(VioDic vioDic);
+
+    /**
+     * 删除违规词
+     *
+     * @param vioDic 违规词实体类
+     * @return Boolean
+     */
+    Boolean deleteVioDic(VioDic vioDic);
 
     /**
      * 修改违规词

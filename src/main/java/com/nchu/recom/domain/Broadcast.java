@@ -2,6 +2,9 @@ package com.nchu.recom.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -9,35 +12,41 @@ import java.sql.Timestamp;
 /**
  * @author Administrator
  */
-@Component
 @ApiModel(description = "广播通知实体类")
+@Component
+@Table(value = "broadcast")
 public class Broadcast {
-    @ApiModelProperty(notes = "用户编号")
-    private String userId;
-
     @ApiModelProperty(notes = "广播通知编号")
-    private String broadcastId;
+    @Id
+    @Column(value = "id")
+    private int id;
+
+    @ApiModelProperty(notes = "用户编号")
+    @Column(value = "user_id")
+    private int userId;
 
     @ApiModelProperty(notes = "广播通知内容")
+    @Column(value = "content")
     private String content;
 
     @ApiModelProperty(notes = "发送通知时间")
+    @Column(value = "time")
     private Timestamp time;
 
-    public String getUserId() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public String getBroadcastId() {
-        return broadcastId;
-    }
-
-    public void setBroadcastId(String broadcastId) {
-        this.broadcastId = broadcastId;
     }
 
     public String getContent() {

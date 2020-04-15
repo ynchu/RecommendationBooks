@@ -10,7 +10,7 @@ public interface BroadcastService {
      *
      * @return Collection<Broadcast>
      */
-    public Collection<Broadcast> getAllBroadcasts();
+    Collection<Broadcast> getAllBroadcasts();
 
     /**
      * 根据id查找通知
@@ -18,5 +18,30 @@ public interface BroadcastService {
      * @param id id
      * @return Broadcast
      */
-    public Broadcast findById(String id);
+    Broadcast findById(int id);
+
+    /**
+     * 添加通知
+     *
+     * @param broadcast 通知实体
+     * @return Boolean
+     */
+    Boolean insertBroadcast(Broadcast broadcast);
+
+    /**
+     * 修改通知
+     *
+     * @param broadcast 通知实体
+     * @return Boolean
+     */
+    Boolean updateBroadcast(Broadcast broadcast);
+
+    /**
+     * 删除通知
+     *
+     * @param broadcast 通知实体
+     * @return Boolean
+     */
+    Boolean deleteBroadcast(Broadcast broadcast);
 }
+

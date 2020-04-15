@@ -29,6 +29,16 @@ public interface VioDicRepository extends CrudRepository<VioDic, String> {
     Boolean insertVioDic(@Param("vioWord") String vioWord);
 
     /**
+     * 删除违规词
+     *
+     * @param vioWord 违规词
+     * @return Boolean
+     */
+    @Modifying
+    @Query("DELETE FROM vio_dic WHERE vio_word = :vioWord;")
+    Boolean deleteVioDic(@Param("vioWord") String vioWord);
+
+    /**
      * 修改违规词
      *
      * @param oldVioWord 原来的违规词

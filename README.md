@@ -1,6 +1,12 @@
 # 上传Github
 
-2020/04/01 **添加部分代码**
+2020-04-15 添加通知的API
+
+2020/04/01 添加部分代码
+
+
+
+
 
 
 **com.nchu.recom.test包为测试用的包，是老师上课所用的代码，可以直接删掉，还有static/spring.jpg和templates/home.html也都可以删掉**

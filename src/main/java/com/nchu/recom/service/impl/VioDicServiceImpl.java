@@ -50,6 +50,17 @@ public class VioDicServiceImpl implements VioDicService {
     }
 
     /**
+     * 删除违规词
+     *
+     * @param vioDic 违规词实体类
+     * @return Boolean
+     */
+    @Override
+    public Boolean deleteVioDic(VioDic vioDic) {
+        return vioDicRepository.deleteVioDic(vioDic.getVicWord());
+    }
+
+    /**
      * 修改违规词
      *
      * @param oldVioDic 原来的违规词

@@ -44,7 +44,7 @@ FROM vio_dic;
 # WHERE user.name = '用户1';
 SELECT *
 FROM vio_dic
-    WHERE vio_word LIKE '%我%';
+WHERE vio_word LIKE '%我%';
 
 # 增
 USE recom;
@@ -64,3 +64,42 @@ WHERE vio_word = '卧槽';
 DELETE
 FROM vio_dic
 WHERE vio_word = '卧槽';
+
+
+
+/*==============================================================*/
+/* Table: broadcast                                               */
+/*==============================================================*/
+
+
+# 查
+USE recom;
+SELECT *
+FROM broadcast;
+SELECT *
+FROM broadcast
+WHERE id = 1;
+# SELECT *
+# FROM vio_dic
+# WHERE vio_word LIKE '%我%';
+
+# 增
+USE recom;
+INSERT broadcast(user_id, content, time)
+VALUES (1, '内容', CURRENT_TIMESTAMP),
+       (1, '内容2', CURRENT_TIMESTAMP);
+
+INSERT broadcast(id, user_id, content, time)
+VALUES (1, 1, '内容3434', CURRENT_TIMESTAMP);
+
+# 改
+UPDATE broadcast
+SET user_id = 1,
+    content = 'hello dfg',
+    time = CURRENT_TIMESTAMP
+WHERE id = 6;
+
+# 删
+DELETE
+FROM broadcast
+WHERE id = 1;
