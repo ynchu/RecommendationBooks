@@ -22,14 +22,14 @@ public class UserRestController {
     private UserService userService;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Collection<User>> getAllUsers(String nickName) {
+    public ResponseEntity<Collection<User>> getAllUsers(String name) {
         Collection<User> users;
-        if (nickName == null) {
+        if (name == null) {
             System.out.println("查询所有用户");
             users = userService.getAllUsers();
         } else {
             System.out.println("根据昵称查询用户");
-            users = userService.findByName(nickName);
+            users = userService.findByName(name);
         }
         return new ResponseEntity<Collection<User>>(users, HttpStatus.OK);
     }

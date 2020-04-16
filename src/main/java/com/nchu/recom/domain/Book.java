@@ -4,13 +4,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Component;
 
-/**
- * @author Administrator
- */
-@Component
 @ApiModel(description = "图书实体类")
+@Component
+@Table(value = "book")
 public class Book {
     @ApiModelProperty(notes = "图书编号")
     @Id

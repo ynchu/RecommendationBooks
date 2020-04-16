@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Timestamp;
 
 @Repository
-public interface BroadcastRepository extends CrudRepository<Broadcast, String> {
+public interface BroadcastRepository extends CrudRepository<Broadcast, Integer> {
     /**
      * 根据id查找通知
      *

@@ -21,7 +21,7 @@ public interface UserService {
      * @param id id
      * @return Broadcast
      */
-    Optional<User> findById(String id);
+    Optional<User> findById(int id);
 
 
     /**

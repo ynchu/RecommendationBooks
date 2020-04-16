@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
      * @return Broadcast
      */
     @Override
-    public Optional<User> findById(String id) {
+    public Optional<User> findById(int id) {
         return userRepository.findById(id);
     }
 

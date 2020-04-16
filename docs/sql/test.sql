@@ -96,7 +96,49 @@ VALUES (1, 1, '内容3434', CURRENT_TIMESTAMP);
 UPDATE broadcast
 SET user_id = 1,
     content = 'hello dfg',
-    time = CURRENT_TIMESTAMP
+    time    = CURRENT_TIMESTAMP
+WHERE id = 6;
+
+# 删
+DELETE
+FROM broadcast
+WHERE id = 1;
+
+
+
+/*==============================================================*/
+/* Table: book                                                  */
+/*==============================================================*/
+
+
+# 查
+USE recom;
+SELECT *
+FROM book;
+SELECT *
+FROM book
+WHERE id = 1;
+# SELECT *
+# FROM vio_dic
+# WHERE vio_word LIKE '%我%';
+SELECT *
+FROM book
+WHERE name LIKE '%PHP%';
+
+# 增
+USE recom;
+INSERT broadcast(user_id, content, time)
+VALUES (1, '内容', CURRENT_TIMESTAMP),
+       (1, '内容2', CURRENT_TIMESTAMP);
+
+INSERT broadcast(id, user_id, content, time)
+VALUES (1, 1, '内容3434', CURRENT_TIMESTAMP);
+
+# 改
+UPDATE broadcast
+SET user_id = 1,
+    content = 'hello dfg',
+    time    = CURRENT_TIMESTAMP
 WHERE id = 6;
 
 # 删
