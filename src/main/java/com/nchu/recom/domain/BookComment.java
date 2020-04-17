@@ -1,34 +1,41 @@
 package com.nchu.recom.domain;
 
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.stereotype.Component;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
-/**
- * @author Administrator
- */
-@Component
 @ApiModel(description = "评论实体类")
-public class Comment {
+@Entity
+@Table(name = "book_comment")
+public class BookComment {
     @ApiModelProperty(notes = "评论编号")
+    @Id
+    @Column(nullable = false, name = "user_id")
     private int commentId;
 
     @ApiModelProperty(notes = "图书编号")
+    @Column(name = "book_id")
     private int bookId;
 
     @ApiModelProperty(notes = "用户编号")
+    @Column(name = "user_id")
     private String userId;
 
     @ApiModelProperty(notes = "评论内容")
+    @Column(name = "comment_content")
     private String commentContent;
 
     @ApiModelProperty(notes = "评论时间")
+    @Column(name = "comment_date")
     private Timestamp commentDate;
 
     @ApiModelProperty(notes = "评论状态")
+    @Column(name = "status")
     private int status;
 
     public int getCommentId() {

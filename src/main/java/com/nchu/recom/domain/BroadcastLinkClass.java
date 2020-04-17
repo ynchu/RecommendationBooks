@@ -1,22 +1,12 @@
 package com.nchu.recom.domain;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Column;
+import java.io.Serializable;
 
-import javax.persistence.*;
-
-@ApiModel(description = "广播通知连接类")
-@Entity
-@Table(name = "broad_link")
-@IdClass(value = BroadcastLinkClass.class)
-public class BroadcastLink {
-    @ApiModelProperty(notes = "用户编号")
-    @Id
+public class BroadcastLinkClass implements Serializable {
     @Column(nullable = false, name = "user_id")
     private int userId;
 
-    @ApiModelProperty(notes = "广播通知编号")
-    @Id
     @Column(nullable = false, name = "broadcast_id")
     private int broadcastId;
 

@@ -145,3 +145,44 @@ WHERE id = 6;
 DELETE
 FROM broadcast
 WHERE id = 1;
+
+
+/*==============================================================*/
+/* Table: broad_link                                            */
+/*==============================================================*/
+
+
+# 查
+USE recom;
+SELECT *
+FROM broad_link;
+SELECT *
+FROM broad_link
+WHERE user_id = 1;
+# SELECT *
+# FROM vio_dic
+# WHERE vio_word LIKE '%我%';
+SELECT *
+FROM book
+WHERE name LIKE '%PHP%';
+
+# 增
+USE recom;
+INSERT broad_link(user_id, broadcast_id)
+VALUES (1, 3);
+
+INSERT broadcast(id, user_id, content, time)
+VALUES (1, 1, '内容3434', CURRENT_TIMESTAMP);
+
+# 改
+UPDATE broadcast
+SET user_id = 1,
+    content = 'hello dfg',
+    time    = CURRENT_TIMESTAMP
+WHERE id = 6;
+
+# 删
+DELETE
+FROM broad_link
+WHERE user_id = 1
+  AND broadcast_id = 1;
