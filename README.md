@@ -2,13 +2,14 @@
 
 ## 上传详情
 
-| 时间       | 详情             | 上传人   |
-| ---------- | ---------------- | -------- |
-| 2020-04-01 | 添加部分代码     | 17201127 |
-| 2020-04-15 | 添加通知的API    | 17201127 |
-| 2020-04-16 | 添加书籍部分操作 | 17201127 |
-| 2020-04-17 | 添加评论相关操作 | 17201127 |
-| **...**    | **...**          | **...**  |
+| 时间       | 详情                  | 上传人   |
+| ---------- | --------------------- | -------- |
+| 2020-04-01 | 添加部分代码          | 17201127 |
+| 2020-04-15 | 添加通知的API         | 17201127 |
+| 2020-04-16 | 添加书籍部分操作      | 17201127 |
+| 2020-04-17 | 添加评论相关操作      | 17201127 |
+| 2020-04-18 | 基本完成API部分的任务 | 17201127 |
+| **...**    | **...**               | **...**  |
 
 
 
@@ -23,8 +24,8 @@
 - ~~用户的相关操作~~
 - ~~违规词的相关操作~~
 - ~~通知的相关操作~~
-- 评论的相关操作
-- 书籍的相关操作
+- ~~评论的相关操作~~
+- ~~书籍的相关操作~~
 - ~~通知连接用户（即发送通知）相关操作~~
 - **...**
 
@@ -56,18 +57,17 @@
 …or create a new repository on the command line
 
 ```bash
-echo "# RecommendationBooks" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin git@github.com:ynchu/RecommendationBooks.git
+git remote add origin https://github.com/ynchu/RecommendationBooks.git
 git push -u origin master
 ```
 
-…or push an existing repository from the command line
+…or push an existing repository from the command line（**推荐使用**）
 
 ```bash
-git remote add origin git@github.com:ynchu/RecommendationBooks.git
+git remote add origin https://github.com/ynchu/RecommendationBooks.git
 git push -u origin master
 ```
 

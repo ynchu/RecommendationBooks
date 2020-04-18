@@ -6,11 +6,9 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Api("This is a RESTful Controller Demo")
@@ -32,6 +30,12 @@ public class BookRestController {
             books = bookService.findByName(name);
         }
         return new ResponseEntity<Collection<Book>>(books, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    public Boolean updateBook(@Valid @RequestBody Book book) {
+        System.out.println("修改书籍");
+        return bookService.updateBook(book);
     }
 
     // TODO 其他操作

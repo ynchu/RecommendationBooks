@@ -24,7 +24,7 @@ public class BookComment {
 
     @ApiModelProperty(notes = "用户编号")
     @Column(name = "user_id")
-    private String userId;
+    private int userId;
 
     @ApiModelProperty(notes = "评论内容")
     @Column(name = "comment_content")
@@ -54,11 +54,11 @@ public class BookComment {
         this.bookId = bookId;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

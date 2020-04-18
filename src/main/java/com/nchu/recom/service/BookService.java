@@ -20,5 +20,13 @@ public interface BookService {
      */
     Collection<Book> findByName(String name);
 
+    /**
+     * 修改书籍信息（id不变）
+     *
+     * @param book Book实体
+     * @return Boolean
+     */
+    Boolean updateBook(Book book);
+
     // TODO 其他操作
 }

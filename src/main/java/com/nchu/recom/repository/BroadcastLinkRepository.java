@@ -40,7 +40,7 @@ public interface BroadcastLinkRepository extends CrudRepository<BroadcastLink, L
     @Query("INSERT broad_link(user_id, broadcast_id) VALUES (:userId, :broadcastId);")
     Boolean insertBroadcastLink(@Param("userId") int userId, @Param("broadcastId") int broadcastId);
 
-    // TODO 暂时不需要
+    // TODO 更新方法暂时不需要
 
     /**
      * 删除通知连接
