@@ -18,7 +18,7 @@ public interface BroadcastService {
      * @param id id
      * @return Broadcast
      */
-    Broadcast findById(int id);
+    Broadcast findById(String id);
 
     /**
      * 添加通知

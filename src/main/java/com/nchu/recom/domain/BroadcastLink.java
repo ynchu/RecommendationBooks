@@ -18,7 +18,7 @@ public class BroadcastLink {
     @ApiModelProperty(notes = "广播通知编号")
     @Id
     @Column(nullable = false, name = "broadcast_id")
-    private int broadcastId;
+    private String broadcastId;
 
     public int getUserId() {
         return userId;
@@ -28,11 +28,11 @@ public class BroadcastLink {
         this.userId = userId;
     }
 
-    public int getBroadcastId() {
+    public String getBroadcastId() {
         return broadcastId;
     }
 
-    public void setBroadcastId(int broadcastId) {
+    public void setBroadcastId(String broadcastId) {
         this.broadcastId = broadcastId;
     }
 }

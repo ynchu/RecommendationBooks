@@ -38,7 +38,7 @@ public interface BroadcastLinkRepository extends CrudRepository<BroadcastLink, L
      */
     @Modifying
     @Query("INSERT broad_link(user_id, broadcast_id) VALUES (:userId, :broadcastId);")
-    Boolean insertBroadcastLink(@Param("userId") int userId, @Param("broadcastId") int broadcastId);
+    Boolean insertBroadcastLink(@Param("userId") int userId, @Param("broadcastId") String broadcastId);
 
     // TODO 更新方法暂时不需要
 
@@ -51,5 +51,5 @@ public interface BroadcastLinkRepository extends CrudRepository<BroadcastLink, L
      */
     @Modifying
     @Query("DELETE FROM broad_link WHERE user_id = :userId AND broadcast_id = :broadcastId;")
-    Boolean deleteBroadcastLink(@Param("userId") int userId, @Param("broadcastId") int broadcastId);
+    Boolean deleteBroadcastLink(@Param("userId") int userId, @Param("broadcastId") String broadcastId);
 }

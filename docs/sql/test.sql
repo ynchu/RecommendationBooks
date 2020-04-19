@@ -85,9 +85,8 @@ WHERE id = 1;
 
 # 增
 USE recom;
-INSERT broadcast(user_id, content, time)
-VALUES (1, '内容', CURRENT_TIMESTAMP),
-       (1, '内容2', CURRENT_TIMESTAMP);
+INSERT broadcast(id, user_id, content, time)
+VALUES ('',1, '内容', CURRENT_TIMESTAMP);
 
 INSERT broadcast(id, user_id, content, time)
 VALUES (1, 1, '内容3434', CURRENT_TIMESTAMP);

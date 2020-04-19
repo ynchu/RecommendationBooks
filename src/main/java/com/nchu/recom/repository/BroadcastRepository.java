@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Timestamp;
 
 @Repository
-public interface BroadcastRepository extends CrudRepository<Broadcast, Integer> {
+public interface BroadcastRepository extends CrudRepository<Broadcast, String> {
     /**
      * 根据id查找通知
      *
@@ -18,19 +18,21 @@ public interface BroadcastRepository extends CrudRepository<Broadcast, Integer> 
      * @return Broadcast
      */
     @Query("SELECT * FROM broadcast WHERE id = :id;")
-    Broadcast findByBroadcastId(@Param("id") int id);
+    Broadcast findByBroadcastId(@Param("id") String id);
 
     /**
      * 插入通知
      *
+     * @param id      广播id
      * @param userId  用户id
      * @param content 内容
      * @param time    时间
      * @return Boolean
      */
     @Modifying
-    @Query("INSERT broadcast(user_id, content, time) VALUES (:userId, :content, :time);")
-    Boolean insertBroadcast(@Param("userId") int userId,
+    @Query("INSERT broadcast(id, user_id, content, time) VALUES (:id, :userId, :content, :time);")
+    Boolean insertBroadcast(@Param("id") String id,
+                            @Param("userId") int userId,
                             @Param("content") String content,
                             @Param("time") Timestamp time);
 
@@ -46,7 +48,7 @@ public interface BroadcastRepository extends CrudRepository<Broadcast, Integer> 
      */
     @Modifying
     @Query("UPDATE broadcast SET user_id = :userId, content = :content, time = :time WHERE id = :id;")
-    Boolean updateBroadcast(@Param("id") int id,
+    Boolean updateBroadcast(@Param("id") String id,
                             @Param("userId") int userId,
                             @Param("content") String content,
                             @Param("time") Timestamp time);
@@ -59,5 +61,5 @@ public interface BroadcastRepository extends CrudRepository<Broadcast, Integer> 
      */
     @Modifying
     @Query("DELETE FROM broadcast WHERE id = :id;")
-    Boolean deleteBroadcast(@Param("id") int id);
+    Boolean deleteBroadcast(@Param("id") String id);
 }

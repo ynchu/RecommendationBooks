@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 
-/**
- * @author Administrator
- */
 @ApiModel(description = "广播通知实体类")
 @Component
 @Table(value = "broadcast")
@@ -19,7 +16,7 @@ public class Broadcast {
     @ApiModelProperty(notes = "广播通知编号")
     @Id
     @Column(value = "id")
-    private int id;
+    private String id;
 
     @ApiModelProperty(notes = "用户编号")
     @Column(value = "user_id")
@@ -33,11 +30,11 @@ public class Broadcast {
     @Column(value = "time")
     private Timestamp time;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -203,10 +203,10 @@ CREATE TABLE user_favi_book
 DROP TABLE IF EXISTS broadcast;
 CREATE TABLE broadcast
 (
-    id      int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    user_id int             NOT NULL,
-    content varchar(1024)   NULL,
-    time    timestamp       NULL,
+    id      char(36) PRIMARY KEY,
+    user_id int           NOT NULL,
+    content varchar(1024) NULL,
+    time    timestamp     NULL,
     FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
@@ -214,8 +214,8 @@ CREATE TABLE broadcast
 DROP TABLE IF EXISTS broad_link;
 CREATE TABLE broad_link
 (
-    user_id      int NOT NULL,
-    broadcast_id int NOT NULL,
+    user_id      int      NOT NULL,
+    broadcast_id char(36) NOT NULL,
     PRIMARY KEY (user_id, broadcast_id),
     FOREIGN KEY (user_id) REFERENCES user (id),
     FOREIGN KEY (broadcast_id) REFERENCES broadcast (id)

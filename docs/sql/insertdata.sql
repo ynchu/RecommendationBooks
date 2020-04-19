@@ -1,13 +1,13 @@
 USE recom;
 
-INSERT INTO user(nick_name, pwd, sex, email, tel)
+INSERT INTO user(name, pwd, sex, email, tel)
 VALUES ('管理员1', '123', 'Man', '516942590@qq.com', '18079148395');
-INSERT INTO user(nick_name, pwd, sex, email, tel)
+INSERT INTO user(name, pwd, sex, email, tel)
 VALUES ('用户1', '123', 'Woman', '2927962422@qq.com', '13839377962');
-INSERT INTO user(nick_name, pwd, sex, email, tel)
+INSERT INTO user(name, pwd, sex, email, tel)
 VALUES ('祝永志', '123', 'Woman', '2927962422@qq.com', '13839377962');
 
-INSERT INTO role(role_name)
+INSERT INTO role(id, name)
 VALUES ('管理员');
 # 默认id从1开始，但是我们规定0表示管理员
 # update role set role_id = 0 where role_id = 1;

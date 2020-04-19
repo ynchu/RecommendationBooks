@@ -35,7 +35,7 @@ public class BroadcastServiceImpl implements BroadcastService {
      * @return Broadcast
      */
     @Override
-    public Broadcast findById(int id) {
+    public Broadcast findById(String id) {
         return broadcastRepository.findByBroadcastId(id);
     }
 
@@ -47,7 +47,7 @@ public class BroadcastServiceImpl implements BroadcastService {
      */
     @Override
     public Boolean insertBroadcast(Broadcast broadcast) {
-        return broadcastRepository.insertBroadcast(broadcast.getUserId(), broadcast.getContent(), broadcast.getTime());
+        return broadcastRepository.insertBroadcast(broadcast.getId(), broadcast.getUserId(), broadcast.getContent(), broadcast.getTime());
     }
 
     /**
