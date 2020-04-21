@@ -33,15 +33,15 @@ public class BroadcastLinkRestController {
         return new ResponseEntity<Collection<BroadcastLink>>(broadcastLinks, HttpStatus.OK);
     }
 
-//    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
-//    public Boolean insertBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
-//        System.out.println("添加通知连接");
-//        return broadcastLinkService.insertBroadcastLink(broadcastLink);
-//    }
-//
-//    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
-//    public Boolean deleteBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
-//        System.out.println("删除通知连接");
-//        return broadcastLinkService.deleteBroadcastLink(broadcastLink);
-//    }
+    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
+    public Boolean insertBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
+        System.out.println("添加通知连接");
+        return broadcastLinkService.insertBroadcastLink(broadcastLink);
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
+    public Boolean deleteBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
+        System.out.println("删除通知连接");
+        return broadcastLinkService.deleteBroadcastLink(broadcastLink);
+    }
 }

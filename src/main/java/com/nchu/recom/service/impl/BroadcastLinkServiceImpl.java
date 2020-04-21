@@ -46,8 +46,7 @@ public class BroadcastLinkServiceImpl implements BroadcastLinkService {
      */
     @Override
     public Boolean insertBroadcastLink(BroadcastLink broadcastLink) {
-        return null;
-//        return broadcastLinkRepository.insertBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
+        return broadcastLinkRepository.insertBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
     }
 
     /**
@@ -58,7 +57,6 @@ public class BroadcastLinkServiceImpl implements BroadcastLinkService {
      */
     @Override
     public Boolean deleteBroadcastLink(BroadcastLink broadcastLink) {
-//        return broadcastLinkRepository.deleteBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
-        return null;
+        return broadcastLinkRepository.deleteBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
     }
 }
