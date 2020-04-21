@@ -88,7 +88,7 @@
         </div>
         <div class="col-sm-10">
           <div class="form-group">
-            <textarea class="form-control" name="" id="ta" rows="15" aria-describedby="helpId1"
+            <textarea class="form-control" name="" id="ta" rows="15" aria-describedby="helpId1" maxlength="1024"
                       v-model="mainBody"></textarea>
             <small id="helpId1" class="form-text text-muted">请输入正文(最多1024字节)</small>
           </div>
@@ -130,8 +130,8 @@
     let vue = new Vue({
         el: "#app",
         data: {
-            theme: "第一封信",
-            mainBody: "朱啊哟肺癌的凤凰国际化",
+            theme: "",
+            mainBody: "",
             tongZhi: {
                 userId: 1,
                 content: this.theme + "segment" + this.mainBody

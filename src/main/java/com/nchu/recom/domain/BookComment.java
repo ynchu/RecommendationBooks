@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class BookComment {
     @ApiModelProperty(notes = "评论编号")
     @Id
-    @Column(nullable = false, name = "user_id")
+    @Column(nullable = false, name = "comment_id")
     private int commentId;
 
     @ApiModelProperty(notes = "图书编号")
