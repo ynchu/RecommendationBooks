@@ -48,4 +48,21 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
                        @Param("status") int status);
 
     // TODO 其他操作
+
+//    @Modifying
+//    @Query("update book set name=:name, publish=:publish, isbn=:isbn, writer=:writer, " +
+//            "local_url=:url, price=:price, type=:type, upper=:upper, viewed=:viewed," +
+//            "cover=:cover, status=:status where id=:id")
+//    boolean updateBook(@Param("id") int id,
+//                    @Param("name") String name,
+//                    @Param("publish") String publish,
+//                    @Param("isbn") String isbn,
+//                    @Param("writer") String writer,
+//                    @Param("url") String url,
+//                    @Param("price") double price,
+//                    @Param("type") String type,
+//                    @Param("upper") String upper,
+//                    @Param("viewed") int viewed,
+//                    @Param("cover") String cover,
+//                    @Param("status") int status);
 }

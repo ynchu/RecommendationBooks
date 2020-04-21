@@ -32,9 +32,23 @@ public class BookRestController {
         return new ResponseEntity<Collection<Book>>(books, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/insert",method = RequestMethod.POST,produces = "application/json")
+    public ResponseEntity<Book> bookAdd(@RequestBody Book book){
+        System.out.println("新书添加，书名:" + book.getName());
+        bookService.addBook(book);
+        return new ResponseEntity<Book>(HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.DELETE)
+    public ResponseEntity<Collection<Book>> bookDel(@RequestParam("id") int id){
+        System.out.println("删除书，书号" + id);
+        bookService.delBook(id);
+        return new ResponseEntity<Collection<Book>>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
     public Boolean updateBook(@Valid @RequestBody Book book) {
-        System.out.println("修改书籍");
+        System.out.println("修改书籍，书号" + book.getId());
         return bookService.updateBook(book);
     }
 

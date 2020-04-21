@@ -71,4 +71,14 @@ public class RecomController {
         System.out.println("违规词上传");
         return "badwordupload";
     }
+
+    @RequestMapping("/books")
+    public String books(){
+        return "books/bookList";
+    }
+
+    @RequestMapping("/books/add")
+    public String bookAdd(){
+        return "books/bookAdd";
+    }
 }

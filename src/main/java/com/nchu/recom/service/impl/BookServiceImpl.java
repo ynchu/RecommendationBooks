@@ -50,4 +50,28 @@ public class BookServiceImpl implements BookService {
                 book.getWriter(), book.getLocalUrl(), book.getPrice(), book.getType(), book.getUpper(),
                 book.getViewed(), book.getCover(), book.getStatus());
     }
+
+    /**
+     * 添加新书
+     * @param book book实体
+     * @return Book
+     */
+    @Override
+    public Book addBook(Book book) {
+        return bookRepository.save(book);
+    }
+
+    /**
+     * 存在则删除指定的书
+     * @param id 指定id
+     * @return 成功true 失败false
+     */
+    @Override
+    public boolean delBook(int id) {
+        if (bookRepository.existsById(id)){
+            bookRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }

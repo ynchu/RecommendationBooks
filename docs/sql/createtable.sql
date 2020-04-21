@@ -48,7 +48,8 @@ DROP TABLE IF EXISTS major;
 CREATE TABLE major
 (
     id   int AUTO_INCREMENT PRIMARY KEY,
-    name varchar(32) NOT NULL
+    name varchar(32)  NOT NULL,
+    info varchar(140) null
 );
 
 
@@ -157,8 +158,8 @@ CREATE TABLE book_score
     book_id int,
     user_id int,
     score   float,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (book_id) REFERENCES book (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) on update cascade on delete cascade,
+    FOREIGN KEY (book_id) REFERENCES book (id) on update cascade on delete cascade
 );
 
 DROP TABLE IF EXISTS book_comment;
@@ -170,8 +171,8 @@ CREATE TABLE book_comment
     comment_content text      NULL,
     comment_date    timestamp NULL,
     status          int DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (book_id) REFERENCES book (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) on update cascade on delete cascade,
+    FOREIGN KEY (book_id) REFERENCES book (id) on update cascade on delete cascade
 );
 
 
@@ -195,8 +196,8 @@ CREATE TABLE user_favi_book
     id      int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     book_id int,
     user_id int,
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (book_id) REFERENCES book (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) on update cascade on delete cascade,
+    FOREIGN KEY (book_id) REFERENCES book (id) on update cascade on delete cascade
 );
 
 
@@ -207,7 +208,7 @@ CREATE TABLE broadcast
     user_id int           NOT NULL,
     content varchar(1024) NULL,
     time    timestamp     NULL,
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) on update cascade on delete cascade
 );
 
 
@@ -217,8 +218,8 @@ CREATE TABLE broad_link
     user_id      int      NOT NULL,
     broadcast_id char(36) NOT NULL,
     PRIMARY KEY (user_id, broadcast_id),
-    FOREIGN KEY (user_id) REFERENCES user (id),
-    FOREIGN KEY (broadcast_id) REFERENCES broadcast (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) on update cascade on delete cascade,
+    FOREIGN KEY (broadcast_id) REFERENCES broadcast (id) on update cascade on delete cascade
 );
 
 
@@ -236,8 +237,8 @@ CREATE TABLE user_book
     book_id int NOT NULL,
     PRIMARY KEY (user_id, book_id),
     KEY book_id (book_id),
-    CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES book (id),
-    CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES user (id)
+    CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES book (id) on update cascade on delete cascade,
+    CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES user (id) on update cascade on delete cascade
 ) ENGINE = innodb
   DEFAULT CHARSET = utf8;
 
@@ -251,5 +252,5 @@ CREATE TABLE comment_comment
     comment_content varchar(225) NULL,
     comment_date    timestamp    NULL,
     status          int DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    FOREIGN KEY (user_id) REFERENCES user (id) on update cascade on delete cascade
 );

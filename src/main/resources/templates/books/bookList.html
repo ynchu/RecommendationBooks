@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .editPane {
+            width: 500px;
+            height: 400px;
+            border: 1px solid #D4CD49;
+            background-color: aliceblue;
+            position: fixed;
+            left: 30%;
+            top: 30%
+            /* position:absolute; */
+            /* z-index: 999; */
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app" class="ml-2 mr-2">
+    <h2>Book List</h2>
+    <div class="form-inline mb-2">
+        <input type="text" class="form-control" size="30px" maxlength="80" v-model="name">
+        <button class="btn btn-success ml-2" id="btn_ser" v-on:click.prevent="findBooks">Find book</button>
+        <!--            <a href="/books/add">-->
+        <!--                <button class="btn btn-info ml-5">Add Book</button>-->
+        <!--            </a>-->
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Book Name</th>
+            <th>Publish</th>
+            <th>ISBN</th>
+            <th>Writer</th>
+            <th>Price</th>
+            <th>Type</th>
+            <th>Upper</th>
+            <th>viewed</th>
+            <th>Status</th>
+            <th>Operate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(book,index) in books">
+            <td v-text="book.name"></td>
+            <td v-text="book.publish"></td>
+            <td v-text="book.isbn"></td>
+            <td v-text="book.writer"></td>
+            <td v-text="book.price"></td>
+            <td v-text="book.type"></td>
+            <td v-text="book.upper"></td>
+            <td v-text="book.viewed"></td>
+            <td v-text="book.status"></td>
+            <td>
+                <button id="btn_mod" class="btn btn-info"
+                        v-on:click.prevent="editBook(book,index)">Edit
+                </button>
+                <button id="btn_del" class="btn btn-warning" v-on:click="deleteBook(book,index)">Delete</button>
+                <button id="btn_det" class="btn btn-link">Detail</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <div style="width: 100px;height: 100px;background-color: aqua; position: fixed;"></div> -->
+<div id="edit" class="editPane" hidden>
+    <form class="form-horizontal mr-5 mt-5">
+        <input type="text" name="" id="id" hidden>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Book Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Publish</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="publish" placeholder="publish">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">ISBN</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="isbn" placeholder="ISBN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Writer</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="writer" placeholder="writer">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">price</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="price" placeholder="price">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="type" placeholder="type">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Upper</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="upper" placeholder="upper">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Status</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="status" placeholder="status">
+            </div>
+        </div>
+        <div class="form-group col-sm-10">
+            <div class="col-sm-10">
+                <button type="button" class="btn btn-success" v-on:click.prevent="confirmBook">Confirm</button>
+                <button type="button" class="btn btn-warning" onclick="cancelEdit()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script>
+
+    window.onload = function () {
+        document.getElementById("btn_ser").click();
+    };
+
+    function cancelEdit() {
+        document.getElementById("edit").hidden = "true";
+    }
+
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            books: [],
+            name: null,
+            id: null
+        },
+        methods: {
+            findBooks: function () {
+                axios.get("https://localhost:8080/api/v1/books", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        // console.log(res);
+                        this.books = res.data;
+                    })
+                    .catch(err => {
+                        // console.error(err);
+                    })
+            },
+            deleteBook: function (book, index) {
+                let id = book.id;
+                // console.log(book.id);
+
+                if (window.confirm("delete?")) {
+
+                    axios.delete("https://localhost:8080/api/v1/books/delete", {
+                        params: {
+                            id: id
+                        }
+                    })
+                        .then(res => {
+                            // console.log(res)
+                            alert("Delete Success");
+                            window.location.reload();
+                        })
+                        .catch(err => {
+                            // console.error(err);
+                        })
+                    return true;
+                } else {
+                    return false;
+                }
+
+            },
+            editBook: function (book, index) {
+                document.getElementById("app").style = ""
+                document.getElementById("edit").hidden = "";
+                document.getElementById("id").value = book.id;
+                document.getElementById("name").value = book.name;
+                document.getElementById("publish").value = book.publish;
+                document.getElementById("isbn").value = book.isbn;
+                document.getElementById("writer").value = book.writer;
+                document.getElementById("price").value = book.price;
+                document.getElementById("type").value = book.type;
+                document.getElementById("upper").value = book.upper;
+                document.getElementById("status").value = book.status;
+            }
+        },
+    });
+
+    var vue2 = new Vue({
+        el: "#edit",
+        data: {
+            book1: {
+                id: null,
+                name: "",
+                publish: "",
+                isbn: "",
+                writer: "",
+                local_url: "",
+                price: "",
+                type: "",
+                upper: "",
+                viewed: "",
+                cover: null,
+                status: 0
+            }
+        },
+        methods: {
+            confirmBook: function () {
+                this.book1.id = document.getElementById("id").value;
+                this.book1.name = document.getElementById("name").value;
+                this.book1.publish = document.getElementById("publish").value;
+                this.book1.isbn = document.getElementById("isbn").value;
+                this.book1.writer = document.getElementById("writer").value;
+                this.book1.price = document.getElementById("price").value;
+                this.book1.type = document.getElementById("type").value;
+                this.book1.upper = document.getElementById("upper").value;
+                this.book1.status = document.getElementById("status").value;
+
+                // console.log(this.book1.id)
+                // console.log(document.getElementById("id").value);
+                axios.put("https://localhost:8080/api/v1/books/update", this.book1)
+                    .then(res => {
+                        // console.log(res.data)
+                        cancelEdit();
+                        alert("Edit Success");
+                        window.location.reload();
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+
+</html>
