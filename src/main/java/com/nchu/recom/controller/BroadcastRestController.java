@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.UUID;
+import java.util.*;
 
 @CrossOrigin
 @RestController
@@ -33,17 +30,26 @@ public class BroadcastRestController {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Collection<Broadcast>> getAllBroadcasts(String id) {
-        System.out.println("查询通知");
-        Collection<Broadcast> broadcasts;
-        if (id == null) {
-            broadcasts = broadcastService.getAllBroadcasts();
+        List<Broadcast> broadcasts;
+        if (id == null || "".equals(id)) {
+            System.out.println("查询全部通知");
+            System.out.println("id = " + id);
+            broadcasts = (List<Broadcast>) broadcastService.getAllBroadcasts();
         } else {
             try {
+                System.out.println("根据id查询通知");
+                System.out.println("id = " + id);
                 broadcasts = new ArrayList<Broadcast>(Collections.singletonList(broadcastService.findById(id)));
             } catch (Exception e) {
-                broadcasts = broadcastService.getAllBroadcasts();
+                broadcasts = (List<Broadcast>) broadcastService.getAllBroadcasts();
             }
         }
+        broadcasts.sort(new Comparator<Broadcast>() {
+            @Override
+            public int compare(Broadcast o1, Broadcast o2) {
+                return o2.getTime().compareTo(o1.getTime());
+            }
+        });
         return new ResponseEntity<Collection<Broadcast>>(broadcasts, HttpStatus.OK);
     }
 

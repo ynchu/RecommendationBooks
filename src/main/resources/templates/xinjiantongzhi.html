@@ -74,7 +74,7 @@
         </div>
         <div class="col-sm-10">
           <div class="form-group">
-            <input type="text" class="form-control" name="" id="theme" aria-describedby="helpId"
+            <input type="text" class="form-control" name="" id="theme" aria-describedby="helpId" maxlength="40"
                    placeholder="请输入主题" v-model="theme">
             <small id="helpId" class="form-text text-muted">请输入需要发送的通知的主题</small>
           </div>
@@ -105,12 +105,6 @@
 </div>
 
 <script>
-    // 回车转<br/>
-    function getFormatCode(strValue) {
-        return strValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\s/g, ' ')
-            .replace(/"/g, "&quot;");
-    }
-
     function segmentTheme(strValue) {
         let end = strValue.indexOf("segment");
         return strValue.substring(0, end);
@@ -122,10 +116,16 @@
         return strValue.substring(start);
     }
 
-    // <br/>转回车
-    function getCode(strValue) {
-        return strValue.replace(/<br>/g, "\n").replace(/&quot;/g, "\"");
-    }
+    // // 回车转<br/>
+    // function getFormatCode(strValue) {
+    //     return strValue.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>').replace(/\s/g, ' ')
+    //         .replace(/"/g, "&quot;");
+    // }
+    //
+    // // <br/>转回车
+    // function getCode(strValue) {
+    //     return strValue.replace(/<br>/g, "\n").replace(/&quot;/g, "\"");
+    // }
 
     let vue = new Vue({
         el: "#app",
@@ -140,7 +140,8 @@
         methods: {
             addTongZhi: function () {
                 this.tongZhi.content = this.theme + "segment" + this.mainBody;
-                console.log(this.tongZhi);
+                // this.tongZhi.content = getFormatCode(this.theme) + "segment" + getFormatCode(this.mainBody);
+                console.log(this.tongZhi.content);
                 console.log(JSON.stringify(this.tongZhi));
                 axios.post("https://localhost:8080/api/v1/broadcasts/insert", this.tongZhi)
                     .then(res => {
