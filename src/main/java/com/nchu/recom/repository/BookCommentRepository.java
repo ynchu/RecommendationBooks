@@ -19,7 +19,7 @@ public interface BookCommentRepository extends CrudRepository<BookComment, Integ
      */
     @Query("SELECT * FROM book_comment;")
     @Override
-    Iterable<BookComment> findAll();
+    Collection<BookComment> findAll();
 
     /**
      * 根据用户id查找自己的书籍评论

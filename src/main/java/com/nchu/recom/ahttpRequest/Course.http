@@ -1,0 +1,25 @@
+PUT https://localhost:8080/api/v1/courses/update
+Content-Type: application/json
+
+{
+  "id": 10,
+  "name": "123eiwfjihcd",
+  "info": "3r98vfbjdkoivjkds"
+}
+
+###
+POST https://localhost:8080/api/v1/courses
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": "123eiwfjihcd",
+  "info": "3r98vfbjdkoivjkds"
+}
+
+###
+GET https://localhost:8080/api/v1/courses
+Accept: application/json
+
+###
+DELETE  https://localhost:8080/api/v1/courses/delete?id=11

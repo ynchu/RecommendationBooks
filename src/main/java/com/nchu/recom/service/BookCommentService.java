@@ -10,7 +10,7 @@ public interface BookCommentService {
      *
      * @return Iterable<BookComment>
      */
-    Iterable<BookComment> findAll();
+    Collection<BookComment> findAll();
 
     /**
      * 根据用户id查找自己的书籍评论

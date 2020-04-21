@@ -1,0 +1,25 @@
+PUT https://localhost:8080/api/v1/majors/update
+Content-Type: application/json
+
+{
+  "id": 11,
+  "name": "123eiwfjihcd",
+  "info": "3r98vfbjdkoivjkds"
+}
+
+###
+POST https://localhost:8080/api/v1/majors
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": "123eiwfjihcd",
+  "info": "3r98vfbjdkoivjkds"
+}
+
+###
+GET https://localhost:8080/api/v1/majors
+Accept: application/json
+
+###
+DELETE  https://localhost:8080/api/v1/majors/delete?id=12

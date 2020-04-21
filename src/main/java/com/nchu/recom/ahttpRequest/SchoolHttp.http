@@ -1,0 +1,30 @@
+POST https://localhost:8080/api/v1/schools
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": "123",
+  "address": "qwe",
+  "tel": "1234565",
+  "info": "nice nice nice nice nice"
+}
+
+###
+GET https://localhost:8080/api/v1/schools
+Accept: application/json
+
+###
+DELETE https://localhost:8080/api/v1/schools/delete?id=
+
+
+###
+PUT https://localhost:8080/api/v1/schools/update
+Content-Type: application/json
+
+{
+  "id": 25,
+  "name": "123",
+  "address": "qwe",
+  "tel": "1234565",
+  "info": "nice nice nice nice nice"
+}

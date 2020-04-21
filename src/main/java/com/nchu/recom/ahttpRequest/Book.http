@@ -1,0 +1,47 @@
+POST https://localhost:8080/api/v1/books
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": "name123",
+  "publish": "publish12343",
+  "isbn": "x-x-x-x-x",
+  "writer": "writer0987",
+  "local_url": "",
+  "price": 114514.1919,
+  "type": "TJ",
+  "upper": "Admin421",
+  "viewed": 0,
+  "cover": "images/lucky.png",
+  "status": "0"
+}
+
+###
+GET https://localhost:8080/api/v1/books
+Accept: application/json
+
+###
+DELETE https://localhost:8080/api/v1/books/delete?id=
+Content-Type: application/json
+
+
+###
+PUT https://localhost:8080/api/v1/books/update
+Content-Type: application/json
+
+{
+  "id": 10,
+  "name": "name123",
+  "publish": "publish12343",
+  "isbn": "x-x-x-x-x",
+  "writer": "writer0987",
+  "local_url": "",
+  "price": 114514.1919,
+  "type": "TJ",
+  "upper": "Admin421",
+  "viewed": 0,
+  "cover": "images/lucky.png",
+  "status": "0"
+}
+
+###

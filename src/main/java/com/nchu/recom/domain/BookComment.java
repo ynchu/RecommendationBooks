@@ -2,6 +2,7 @@ package com.nchu.recom.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @ApiModel(description = "评论实体类")
-@Entity
+@Component
 @Table(name = "book_comment")
 public class BookComment {
     @ApiModelProperty(notes = "评论编号")

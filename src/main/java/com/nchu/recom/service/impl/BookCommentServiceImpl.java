@@ -24,7 +24,7 @@ public class BookCommentServiceImpl implements BookCommentService {
      * @return Iterable<BookComment>
      */
     @Override
-    public Iterable<BookComment> findAll() {
+    public Collection<BookComment> findAll() {
         return bookCommentRepository.findAll();
     }
 
