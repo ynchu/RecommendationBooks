@@ -36,11 +36,11 @@ public interface BroadcastLinkRepository extends JpaRepository<BroadcastLink, Lo
      *
      * @param userId      用户id
      * @param broadcastId 通知id
-     * @return Boolean
+     * @return int
      */
     @Modifying
     @Query(value = "INSERT broad_link(user_id, broadcast_id) VALUES (:userId, :broadcastId) ;", nativeQuery = true)
-    Boolean insertBroadcastLink(@Param("userId") int userId, @Param("broadcastId") String broadcastId);
+    int insertBroadcastLink(@Param("userId") int userId, @Param("broadcastId") String broadcastId);
 
     // TODO 更新方法暂时不需要
 
@@ -49,9 +49,9 @@ public interface BroadcastLinkRepository extends JpaRepository<BroadcastLink, Lo
      *
      * @param userId      用户id
      * @param broadcastId 通知id
-     * @return Boolean
+     * @return int
      */
     @Modifying
     @Query(value = "DELETE FROM broad_link WHERE user_id = :userId AND broadcast_id = :broadcastId ;", nativeQuery = true)
-    Boolean deleteBroadcastLink(@Param("userId") int userId, @Param("broadcastId") String broadcastId);
+    int deleteBroadcastLink(@Param("userId") int userId, @Param("broadcastId") String broadcastId);
 }

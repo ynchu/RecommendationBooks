@@ -6,9 +6,11 @@ import com.nchu.recom.service.BroadcastLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 
 @Service
+@Transactional
 public class BroadcastLinkServiceImpl implements BroadcastLinkService {
     private BroadcastLinkRepository broadcastLinkRepository;
 
@@ -46,7 +48,8 @@ public class BroadcastLinkServiceImpl implements BroadcastLinkService {
      */
     @Override
     public Boolean insertBroadcastLink(BroadcastLink broadcastLink) {
-        return broadcastLinkRepository.insertBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
+        int i = broadcastLinkRepository.insertBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
+        return i > 0;
     }
 
     /**
@@ -57,6 +60,7 @@ public class BroadcastLinkServiceImpl implements BroadcastLinkService {
      */
     @Override
     public Boolean deleteBroadcastLink(BroadcastLink broadcastLink) {
-        return broadcastLinkRepository.deleteBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
+        int i = broadcastLinkRepository.deleteBroadcastLink(broadcastLink.getUserId(), broadcastLink.getBroadcastId());
+        return i > 0;
     }
 }
