@@ -227,3 +227,9 @@ DELETE
 FROM broad_link
 WHERE user_id = 1
   AND broadcast_id = 1;
+
+
+
+
+
+SELECT * FROM broad_link;

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @ApiModel(description = "广播通知连接类")
 @Entity
 @Table(name = "broad_link")
-@IdClass(value = BroadcastLinkClass.class)
+@IdClass(value = BroadcastLinkIdClass.class)
 public class BroadcastLink {
     @ApiModelProperty(notes = "用户编号")
     @Id

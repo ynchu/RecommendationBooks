@@ -25,6 +25,7 @@ public class BroadcastLinkRestController {
         if (userId == null) {
             System.out.println("查询所有通知连接");
             broadcastLinks = broadcastLinkService.getAllBroadcastLink();
+            System.out.println(broadcastLinks == null);
         } else {
             System.out.println("根据用户id查询通知连接");
             broadcastLinks = broadcastLinkService.findByUserId(Integer.parseInt(userId));
@@ -32,15 +33,15 @@ public class BroadcastLinkRestController {
         return new ResponseEntity<Collection<BroadcastLink>>(broadcastLinks, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
-    public Boolean insertBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
-        System.out.println("添加通知连接");
-        return broadcastLinkService.insertBroadcastLink(broadcastLink);
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
-    public Boolean deleteBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
-        System.out.println("删除通知连接");
-        return broadcastLinkService.deleteBroadcastLink(broadcastLink);
-    }
+//    @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
+//    public Boolean insertBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
+//        System.out.println("添加通知连接");
+//        return broadcastLinkService.insertBroadcastLink(broadcastLink);
+//    }
+//
+//    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
+//    public Boolean deleteBroadcastLink(@Valid @RequestBody BroadcastLink broadcastLink) {
+//        System.out.println("删除通知连接");
+//        return broadcastLinkService.deleteBroadcastLink(broadcastLink);
+//    }
 }

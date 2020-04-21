@@ -2,41 +2,40 @@ package com.nchu.recom.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @ApiModel(description = "评论实体类")
 @Component
-@Table(name = "book_comment")
+@Table(value = "book_comment")
 public class BookComment {
     @ApiModelProperty(notes = "评论编号")
     @Id
-    @Column(nullable = false, name = "comment_id")
+    @Column(value = "comment_id")
     private int commentId;
 
     @ApiModelProperty(notes = "图书编号")
-    @Column(name = "book_id")
+    @Column(value = "book_id")
     private int bookId;
 
     @ApiModelProperty(notes = "用户编号")
-    @Column(name = "user_id")
+    @Column(value = "user_id")
     private int userId;
 
     @ApiModelProperty(notes = "评论内容")
-    @Column(name = "comment_content")
+    @Column(value = "comment_content")
     private String commentContent;
 
     @ApiModelProperty(notes = "评论时间")
-    @Column(name = "comment_date")
+    @Column(value = "comment_date")
     private Timestamp commentDate;
 
     @ApiModelProperty(notes = "评论状态")
-    @Column(name = "status")
+    @Column(value = "status")
     private int status;
 
     public int getCommentId() {
