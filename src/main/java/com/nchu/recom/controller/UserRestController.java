@@ -44,7 +44,7 @@ public class UserRestController {
         return userService.insertUser(user);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "application/json")
     public Boolean updateUser(@Valid @RequestBody User user) {
         System.out.println("修改用户");
         return userService.updateUser(user);

@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS recom;
 
 
-CREATE DATABASE recom;
+CREATE DATABASE recom default character set utf8;
 
 
 USE recom;

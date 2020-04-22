@@ -81,4 +81,9 @@ public class RecomController {
     public String bookAdd(){
         return "books/bookAdd";
     }
+
+    @RequestMapping("/users")
+    public String users(){
+        return "users/userList";
+    }
 }

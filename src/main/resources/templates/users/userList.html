@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .editPane {
+            width: 500px;
+            height: 400px;
+            border: 1px solid #D4CD49;
+            background-color: aliceblue;
+            position: fixed;
+            left: 30%;
+            top: 30%
+            /* position:absolute; */
+            /* z-index: 999; */
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app" class="ml-2 mr-2">
+    <h2>User List</h2>
+    <div class="form-inline mb-2">
+        <input type="text" class="form-control" size="30px" maxlength="80" v-model="name">
+        <button class="btn btn-success ml-2" id="btn_ser" v-on:click.prevent="findUsers">Find book</button>
+        <!--            <a href="/books/add">-->
+        <!--                <button class="btn btn-info ml-5">Add Book</button>-->
+        <!--            </a>-->
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Password</th>
+            <th>Sex</th>
+            <th>Email</th>
+            <th>Tel</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(user,index) in users">
+            <td v-text="user.name"></td>
+            <td v-text="user.pwd"></td>
+            <td v-text="user.sex"></td>
+            <td v-text="user.email"></td>
+            <td v-text="user.tel"></td>
+            <td>
+                <button id="btn_mod" class="btn btn-info"
+                        v-on:click.prevent="editUser(user,index)">Edit
+                </button>
+                <button id="btn_del" class="btn btn-warning" v-on:click="deleteUser(user,index)">Delete</button>
+                <button id="btn_det" class="btn btn-link">Detail</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <div style="width: 100px;height: 100px;background-color: aqua; position: fixed;"></div> -->
+<div id="edit" class="editPane" hidden>
+    <form class="form-horizontal mr-5 mt-5">
+        <input type="text" name="" id="id" hidden>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Book Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="pwd" placeholder="publish">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Sex</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="sex" placeholder="ISBN">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" placeholder="writer">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Telephone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="tel" placeholder="price">
+            </div>
+        </div>
+        <div class="form-group col-sm-10">
+            <div class="col-sm-10">
+                <button type="button" class="btn btn-success" v-on:click.prevent="confirmUser">Confirm</button>
+                <button type="button" class="btn btn-warning" onclick="cancelEdit()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script>
+
+    window.onload = function () {
+        document.getElementById("btn_ser").click();
+    };
+
+    function cancelEdit() {
+        document.getElementById("edit").hidden = "true";
+    }
+
+    var vue = new Vue({
+        el: "#app",
+        data: {
+            users: [],
+            name: null,
+            id: null
+        },
+        methods: {
+            findUsers: function () {
+                axios.get("https://localhost:8080/api/v1/users", {
+                    params: {
+                        name: this.name
+                    }
+                })
+                    .then(res => {
+                        // console.log(res);
+                        this.users = res.data;
+                    })
+                    .catch(err => {
+                        // console.error(err);
+                    })
+            },
+            deleteUser: function (user, index) {
+                let id = user.id;
+                // console.log(user.id);
+
+                if (window.confirm("delete?")) {
+
+                    axios.delete("https://localhost:8080/api/v1/users/delete", {
+                        params: {
+                            id: id
+                        }
+                    })
+                        .then(res => {
+                            // console.log(res)
+                            alert("Delete Success");
+                            window.location.reload();
+                        })
+                        .catch(err => {
+                            // console.error(err);
+                        })
+                    return true;
+                } else {
+                    return false;
+                }
+
+            },
+            editUser: function (user, index) {
+                document.getElementById("app").style = ""
+                document.getElementById("edit").hidden = "";
+                document.getElementById("id").value = user.id;
+                document.getElementById("name").value = user.name;
+                document.getElementById("pwd").value = user.pwd;
+                document.getElementById("sex").value = user.sex;
+                document.getElementById("email").value = user.email;
+                document.getElementById("tel").value = user.tel;
+            }
+        },
+    });
+
+    var vue2 = new Vue({
+        el: "#edit",
+        data: {
+            user1: {
+                id: null,
+                name: "",
+                pwd: "",
+                sex: "",
+                email: "",
+                tel: ""
+            }
+        },
+        methods: {
+            confirmUser: function () {
+                this.user1.id = document.getElementById("id").value;
+                this.user1.name = document.getElementById("name").value;
+                this.user1.pwd = document.getElementById("pwd").value;
+                this.user1.sex = document.getElementById("sex").value;
+                this.user1.email = document.getElementById("email").value;
+                this.user1.tel = document.getElementById("tel").value;
+
+                // console.log(this.book1.id)
+                // console.log(document.getElementById("id").value);
+                axios.put("https://localhost:8080/api/v1/users/update", this.user1)
+                    .then(res => {
+                        // console.log(res.data)
+                        cancelEdit();
+                        alert("Edit Success");
+                        window.location.reload();
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+
+</html>
