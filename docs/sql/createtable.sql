@@ -83,6 +83,7 @@ CREATE TABLE major_course
 (
     major_id  int NULL,
     course_id int NULL,
+    primary key (major_id,course_id),
     CONSTRAINT major_course_course_course_id_fk
         FOREIGN KEY (course_id) REFERENCES course (id)
             ON UPDATE CASCADE ON DELETE CASCADE,
@@ -108,6 +109,7 @@ CREATE TABLE school_major
 (
     school_id int NULL,
     major_id  int NULL,
+    primary key (school_id,major_id),
     CONSTRAINT school_major_major_major_id_fk
         FOREIGN KEY (major_id) REFERENCES major (id)
             ON UPDATE CASCADE ON DELETE CASCADE,

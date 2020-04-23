@@ -187,8 +187,6 @@ INSERT INTO major_course(major_id, course_id)
 VALUES (1, 5);
 INSERT INTO major_course(major_id, course_id)
 VALUES (1, 6);
-INSERT INTO major_course(major_id, course_id)
-VALUES (1, 4);
 
 
 insert INTO school
@@ -252,5 +250,3 @@ INSERT INTO school_major(school_id, major_id)
 VALUES (9, 9);
 INSERT INTO school_major(school_id, major_id)
 VALUES (9, 10);
-INSERT INTO school_major(school_id, major_id)
-VALUES (9, 2);
