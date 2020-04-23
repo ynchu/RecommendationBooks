@@ -1,0 +1,18 @@
+POST https://localhost:8080/api/v1/majorCourses/insert
+Content-Type: application/json
+
+{
+  "major_id": 5,
+  "course_id": 4
+}
+
+###
+GET https://localhost:8080/api/v1/majorCourses
+Accept: application/json
+
+###
+
+DELETE https://localhost:8080/api/v1/majorCourses/delete?major_id=5&course_id=4
+Accept: application/json
+
+###

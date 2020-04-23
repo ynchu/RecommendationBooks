@@ -44,7 +44,7 @@ public class SchoolMajorRestController {
 
     @RequestMapping(value = "/delete",method = RequestMethod.DELETE,produces = "application/json")
     public Boolean deleteSchoolMajor(SchoolMajor schoolMajor){
-        System.out.println("delete major" + schoolMajor.getMajor_id() + "form school " + schoolMajor.getSchool_id());
+        System.out.println("delete major" + schoolMajor.getMajor_id() + " form school " + schoolMajor.getSchool_id());
         return smService.deleteSchoolMajor(schoolMajor);
     }
 }
