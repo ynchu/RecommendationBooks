@@ -15,7 +15,7 @@ public interface MajorRepository extends CrudRepository<Major, Integer> {
      * @param name 匹配名称
      * @return Collection<Major>
      */
-    @Query("select * form major where name like :name")
+    @Query("select * from major where name like :name")
     Collection<Major> findByName(@Param("name") String name);
 
     /**

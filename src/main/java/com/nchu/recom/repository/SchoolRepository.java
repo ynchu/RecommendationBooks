@@ -15,7 +15,7 @@ public interface SchoolRepository extends CrudRepository<School, Integer> {
      * @param name 匹配名称
      * @return Collection<School>
      */
-    @Query("select * form school where name like :condition")
+    @Query("select * from school where name like :condition")
     Collection<School> findByName(@Param("condition") String name);
 
     /**

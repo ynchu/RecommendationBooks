@@ -2,13 +2,18 @@ package com.nchu.recom.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.stereotype.Component;
+
+import java.util.Collection;
 
 @ApiModel(description = "学校实体类")
 @Component
 @Table("school")
 public class School extends BaseNamed {
+
 
     @ApiModelProperty(notes = "学校地址")
     private String address;
@@ -17,6 +22,11 @@ public class School extends BaseNamed {
     @ApiModelProperty(notes = "学校信息")
     private String info;
 
+    @MappedCollection(idColumn = "school_id",keyColumn = "major_id")
+    private Collection<SchoolMajor> schoolMajors;
+
+    @Transient
+    private Collection<Major> majors;
     public String getAddress() {
         return address;
     }
@@ -39,5 +49,21 @@ public class School extends BaseNamed {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public Collection<SchoolMajor> getSchoolMajors() {
+        return schoolMajors;
+    }
+
+    public void setSchoolMajors(Collection<SchoolMajor> schoolMajors) {
+        this.schoolMajors = schoolMajors;
+    }
+
+    public Collection<Major> getMajors() {
+        return majors;
+    }
+
+    public void setMajors(Collection<Major> majors) {
+        this.majors = majors;
     }
 }

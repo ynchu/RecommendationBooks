@@ -1,15 +1,23 @@
 package com.nchu.recom.controller;
 
 
+import com.nchu.recom.domain.Major;
+import com.nchu.recom.domain.School;
 import com.nchu.recom.domain.SchoolMajor;
+import com.nchu.recom.service.MajorService;
 import com.nchu.recom.service.SchoolMajorService;
+import com.nchu.recom.service.SchoolService;
 import io.swagger.annotations.Api;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Api("This is REST for Majors in School")
 @CrossOrigin
@@ -18,22 +26,49 @@ import java.util.Collection;
 public class SchoolMajorRestController {
 
     private SchoolMajorService smService;
+    private final SchoolService sService;
+    private final MajorService mService;
 
-    public SchoolMajorRestController(SchoolMajorService smService) {
+    public SchoolMajorRestController(SchoolMajorService smService, SchoolService sService, MajorService mService) {
         this.smService = smService;
+        this.sService = sService;
+        this.mService = mService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<Collection<SchoolMajor>> getAll(String schoolId) {
-        Collection<SchoolMajor> schoolMajors;
-        if (schoolId == null) {
+    public ResponseEntity<Collection<School>> getAll(String name) {
+//        Collection<SchoolMajor> schoolMajors;
+        Collection<School> schools;
+        if (name == null) {
             System.out.println("find All Majors in School");
-            schoolMajors = smService.getAllSchoolMajor();
+//            schoolMajors = smService.getAllSchoolMajor();
+            schools = sService.getAllSchools();
         } else {
-            System.out.println("find majors in school Id: " + schoolId);
-            schoolMajors = smService.getSchoolMajorBySchoolId(Integer.parseInt(schoolId));
+//            schoolMajors = smService.getSchoolMajorBySchoolId(Integer.parseInt(schoolId));
+            System.out.println("find majors in school name: " + name);
+            schools = sService.findSchoolByName(name);
         }
-        return new ResponseEntity<>(schoolMajors, HttpStatus.OK);
+
+        Map<Integer, Major> majorMap = new HashMap<>();
+        Collection<Major> majors = mService.getAllMajors();
+        for (Major major:majors){
+            majorMap.put(major.getId(),major);
+        }
+
+        for (School school:schools){
+            Collection<SchoolMajor> schoolMajors = school.getSchoolMajors();
+            Collection<Major> ma = new ArrayList<>();
+            for (SchoolMajor sm:schoolMajors){
+                ma.add(majorMap.get(sm.getMajor_id()));
+            }
+            school.setMajors(ma);
+        }
+
+        if (schools.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(schools, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/insert",method = RequestMethod.POST,produces = "application/json")
