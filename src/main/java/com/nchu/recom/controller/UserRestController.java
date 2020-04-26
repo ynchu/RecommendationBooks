@@ -51,8 +51,8 @@ public class UserRestController {
     }
 
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
-    public Boolean deleteUserById(@Valid @RequestBody int id) {
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = "application/json")
+    public Boolean deleteUserById(@Valid @RequestParam int id) {
         System.out.println("id = " + id);
         System.out.println("根据用户id删除用户");
         return userService.deleteUserById(id);
