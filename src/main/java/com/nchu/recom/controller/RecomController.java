@@ -94,6 +94,31 @@ public class RecomController {
 
     @RequestMapping("/schools")
     public String schools(){
-        return "School/schoolList";
+        return "school/schoolList";
+    }
+
+    @RequestMapping("/schools/add")
+    public String schoolsAdd(){
+        return "school/schoolAdd";
+    }
+
+    @RequestMapping("/majors")
+    public String majors(){
+        return "major/majorList";
+    }
+
+    @RequestMapping("/majors/add")
+    public String majorsAdd(){
+        return "major/majorAdd";
+    }
+
+    @RequestMapping("/courses")
+    public String courses(){
+        return "courses/coursesList";
+    }
+
+    @RequestMapping("/courses/add")
+    public String courseAdd(){
+        return "courses/coursesAdd";
     }
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Add</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Add Major</h2>
+        <form method="post" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Major Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Major Name" v-model="major.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Information</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="info" placeholder="Information" v-model="major.info">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <button class="btn btn-success" type="submit" v-on:click.prevent="addMajor">Add</button>
+                    <button class="btn btn-warning">Clear</button>
+                    <a href="../schools">
+                        <button class="btn btn-info">Back</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+    <script>
+        var vue = new Vue({
+            el:"#app",
+            data:{
+                major:{
+                    id:null,
+                    name:"",
+                    info:""
+                }, 
+            },
+            methods:{
+                    addSchool:function(){
+                        axios.post("https://localhost:8080/api/v1/majors/insert",this.major)
+                        .then(res => {
+                            console.log(res.data)
+                        })
+                        .catch(err => {
+                            console.error(err); 
+                        })
+                    }
+                }
+        })
+    </script>
+</body>
+</html>
