@@ -74,51 +74,51 @@ public class RecomController {
 
     @RequestMapping("/books")
     public String books(){
-        return "books/bookList";
+        return "setting/books/bookList";
     }
 
     @RequestMapping("/books/add")
     public String bookAdd(){
-        return "books/bookAdd";
+        return "setting/books/bookAdd";
     }
 
     @RequestMapping("/users")
     public String users(){
-        return "users/userList";
+        return "setting/users/userList";
     }
 
     @RequestMapping("/users/add")
     public String usersAdd(){
-        return "users/userAdd";
+        return "setting/users/userAdd";
     }
 
     @RequestMapping("/schools")
     public String schools(){
-        return "school/schoolList";
+        return "setting/school/schoolList";
     }
 
     @RequestMapping("/schools/add")
     public String schoolsAdd(){
-        return "school/schoolAdd";
+        return "setting/school/schoolAdd";
     }
 
     @RequestMapping("/majors")
     public String majors(){
-        return "major/majorList";
+        return "setting/major/majorList";
     }
 
     @RequestMapping("/majors/add")
     public String majorsAdd(){
-        return "major/majorAdd";
+        return "setting/major/majorAdd";
     }
 
     @RequestMapping("/courses")
     public String courses(){
-        return "courses/coursesList";
+        return "setting/courses/coursesList";
     }
 
     @RequestMapping("/courses/add")
     public String courseAdd(){
-        return "courses/coursesAdd";
+        return "setting/courses/coursesAdd";
     }
 }
