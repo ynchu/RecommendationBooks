@@ -22,11 +22,12 @@ public class School extends BaseNamed {
     @ApiModelProperty(notes = "学校信息")
     private String info;
 
-    @MappedCollection(idColumn = "school_id",keyColumn = "major_id")
+    @MappedCollection(idColumn = "school_id", keyColumn = "major_id")
     private Collection<SchoolMajor> schoolMajors;
 
     @Transient
     private Collection<Major> majors;
+
     public String getAddress() {
         return address;
     }

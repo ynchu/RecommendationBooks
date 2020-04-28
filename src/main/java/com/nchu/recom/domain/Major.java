@@ -12,18 +12,15 @@ import java.util.Collection;
 @ApiModel(description = "专业实体类")
 @Component
 @Table("major")
-public class Major extends BaseNamed{
-
-
+public class Major extends BaseNamed {
     @ApiModelProperty(notes = "专业信息")
     private String info;
 
-    @MappedCollection(idColumn = "major_id",keyColumn = "course_id")
+    @MappedCollection(idColumn = "major_id", keyColumn = "course_id")
     private Collection<MajorCourse> majorCourses;
 
     @Transient
     private Collection<Course> courses;
-
 
     public String getInfo() {
         return info;
