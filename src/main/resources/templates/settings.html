@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'settings')}">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      th:replace="~{fragments/layout :: layout (~{::body},'settings')}">
 
 <head>
   <meta charset="UTF-8">
@@ -67,6 +68,47 @@
               <button type="button" class="list-group-item list-group-item-action"
                       v-on:click="change('badwordmanage')">违规词管理
                 <span class="badge pull-right">1</span>
+              </button>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('books')">书籍管理
+<!--                <span class="badge pull-right">1</span>-->
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('users')">用户管理
+<!--                <span class="badge pull-right">1</span>-->
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('schools')">学校管理
+<!--                <span class="badge pull-right">1</span>-->
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('majors')">专业管理
+<!--                <span class="badge pull-right">1</span>-->
+              </button>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action"
+                      v-on:click="change('courses')">课程管理
+<!--                <span class="badge pull-right">1</span>-->
               </button>
             </div>
           </li>

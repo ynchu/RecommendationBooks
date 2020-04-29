@@ -19,6 +19,14 @@ public interface SchoolRepository extends CrudRepository<School, Integer> {
     Collection<School> findByName(@Param("condition") String name);
 
     /**
+     *
+     * @param id
+     * @return
+     */
+    @Query("select * from school where id=:id")
+    Collection<School> findById(@Param("id") int id);
+
+    /**
      * 更细指定id的学校信息
      * @param name 更新后学校名称
      * @param address 更新后学校地址

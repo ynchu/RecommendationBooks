@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class SchoolServiceImpl implements SchoolService {
@@ -35,6 +36,11 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public Collection<School> findSchoolByName(String name) {
         return (Collection<School>) schRepo.findByName("%" + name + "%");
+    }
+
+    @Override
+    public Collection<School> findSchoolById(int id) {
+        return (Collection<School>) schRepo.findById(id);
     }
 
     /**

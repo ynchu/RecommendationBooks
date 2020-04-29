@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ###
-GET https://localhost:8080/api/v1/majorCourses?name=软件
+GET https://localhost:8080/api/v1/majorCourses
 Accept: application/json
 
 ###

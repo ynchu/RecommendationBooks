@@ -19,199 +19,204 @@
             position: fixed;
             left: 30%;
             top: 30%
-            /* position:absolute; */
-            /* z-index: 999; */
+                /* position:absolute; */
+                /* z-index: 999; */
         }
-        .area{
-            resize:none;
+
+        .area {
+            resize: none;
         }
     </style>
 </head>
 
 <body>
 
-<div id="app" class="ml-2 mr-2">
-    <h2>School List</h2>
-    <div class="form-inline mb-2">
-        <input type="text" class="form-control" size="30px" maxlength="80" v-model="name">
-        <button class="btn btn-success ml-2" id="btn_ser" v-on:click.prevent="findSchools">Find School</button>
-                   <a href="/schools/add">
-                       <button class="btn btn-info ml-5">Add School</button>
-                   </a>
+    <div id="app" class="ml-2 mr-2">
+        <h2>School List</h2>
+        <div class="form-inline mb-2">
+            <input type="text" class="form-control" size="30px" maxlength="80" v-model="name">
+            <button class="btn btn-success ml-2" id="btn_ser" v-on:click.prevent="findSchools">Find School</button>
+            <a href="/schools/add">
+                <button class="btn btn-info ml-5">Add School</button>
+            </a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>School Name</th>
+                    <th>Address</th>
+                    <th>Tel</th>
+                    <th>Info</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(school,index) in schools">
+                    <td v-text="school.name"></td>
+                    <td v-text="school.address"></td>
+                    <td v-text="school.tel"></td>
+                    <td v-text="school.info"></td>
+                    <td>
+                        <button id="btn_mod" class="btn btn-info" v-on:click.prevent="editSchool(school,index)">Edit
+                        </button>
+                        <button id="btn_del" class="btn btn-warning"
+                            v-on:click="deleteSchool(school,index)">Delete</button>
+                        <a href="">
+                            <button id="btn_det" class="btn btn-link">Detail</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>School Name</th>
-            <th>Address</th>
-            <th>Tel</th>
-            <th>Info</th>
-            <th>Operation</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(school,index) in schools">
-            <td v-text="school.name"></td>
-            <td v-text="school.address"></td>
-            <td v-text="school.tel"></td>
-            <td v-text="school.info"></td>
-            <td>
-                <button id="btn_mod" class="btn btn-info"
-                        v-on:click.prevent="editSchool(school,index)">Edit
-                </button>
-                <button id="btn_del" class="btn btn-warning" v-on:click="deleteSchool(school,index)">Delete</button>
-                <button id="btn_det" class="btn btn-link">Detail</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<!-- <div style="width: 100px;height: 100px;background-color: aqua; position: fixed;"></div> -->
-<div id="edit" class="editPane" hidden>
-    <form class="form-horizontal mr-5 mt-5">
-        <input type="text" name="" id="id" hidden>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" placeholder="School Name">
+    <!-- <div style="width: 100px;height: 100px;background-color: aqua; position: fixed;"></div> -->
+    <div id="edit" class="editPane" hidden>
+        <form class="form-horizontal mr-5 mt-5">
+            <input type="text" name="" id="id" hidden>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="School Name">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Address</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="addr" placeholder="Address">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="addr" placeholder="Address">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Tel</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="tel" placeholder="Tel">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Tel</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="tel" placeholder="Tel">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Information</label>
-            <div class="col-sm-10">
-                <!-- <input type="text" class="form-control" id="info" placeholder="info"> -->
-                <textarea class="form-control area" id="info" placeholder="Information" rows="5"></textarea>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Information</label>
+                <div class="col-sm-10">
+                    <!-- <input type="text" class="form-control" id="info" placeholder="info"> -->
+                    <textarea class="form-control area" id="info" placeholder="Information" rows="5"></textarea>
+                </div>
             </div>
-        </div>
-        <div class="form-group col-sm-10">
-            <div class="col-sm-10">
-                <button type="button" class="btn btn-success" v-on:click.prevent="confirmSchool">Confirm</button>
-                <button type="button" class="btn btn-warning" onclick="cancelEdit()">Cancel</button>
+            <div class="form-group col-sm-10">
+                <div class="col-sm-10">
+                    <button type="button" class="btn btn-success" v-on:click.prevent="confirmSchool">Confirm</button>
+                    <button type="button" class="btn btn-warning" onclick="cancelEdit()">Cancel</button>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
-<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
-<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
-<script>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+    <script>
 
-    window.onload = function () {
-        document.getElementById("btn_ser").click();
-    };
+        window.onload = function () {
+            document.getElementById("btn_ser").click();
+        };
 
-    function cancelEdit() {
-        document.getElementById("edit").hidden = "true";
-    }
+        function cancelEdit() {
+            document.getElementById("edit").hidden = "true";
+        }
 
-    var vue = new Vue({
-        el: "#app",
-        data: {
-            schools: [],
-            name: null,
-            id: null
-        },
-        methods: {
-            findSchools: function () {
-                axios.get("https://localhost:8080/api/v1/schools", {
-                    params: {
-                        name: this.name
-                    }
-                })
-                    .then(res => {
-                        // console.log(res);
-                        this.schools = res.data;
-                    })
-                    .catch(err => {
-                        // console.error(err);
-                    })
+
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                schools: [],
+                name: null,
+                id: null
             },
-            deleteSchool: function (school, index) {
-                let id = school.id;
-                // console.log(user.id);
-
-                if (window.confirm("delete?")) {
-
-                    axios.delete("https://localhost:8080/api/v1/schools/delete", {
+            methods: {
+                findSchools: function () {
+                    axios.get("https://localhost:8080/api/v1/schools", {
                         params: {
-                            id: id
+                            name: this.name
                         }
                     })
                         .then(res => {
-                            // console.log(res)
-                            alert("Delete Success");
-                            window.location.reload();
+                            // console.log(res);
+                            this.schools = res.data;
                         })
                         .catch(err => {
                             // console.error(err);
                         })
-                    return true;
-                } else {
-                    return false;
+                },
+
+                deleteSchool: function (school, index) {
+                    let id = school.id;
+                    // console.log(user.id);
+
+                    if (window.confirm("delete?")) {
+
+                        axios.delete("https://localhost:8080/api/v1/schools/delete", {
+                            params: {
+                                id: id
+                            }
+                        })
+                            .then(res => {
+                                // console.log(res)
+                                alert("Delete Success");
+                                window.location.reload();
+                            })
+                            .catch(err => {
+                                // console.error(err);
+                            })
+                        return true;
+                    } else {
+                        return false;
+                    }
+
+                },
+                editSchool: function (school, index) {
+                    document.getElementById("app").style = ""
+                    document.getElementById("edit").hidden = "";
+                    document.getElementById("id").value = school.id;
+                    document.getElementById("name").value = school.name;
+                    document.getElementById("addr").value = school.address;
+                    document.getElementById("tel").value = school.tel;
+                    document.getElementById("info").value = school.info;
                 }
-
             },
-            editSchool: function (school, index) {
-                document.getElementById("app").style = ""
-                document.getElementById("edit").hidden = "";
-                document.getElementById("id").value = school.id;
-                document.getElementById("name").value = school.name;
-                document.getElementById("addr").value = school.address;
-                document.getElementById("tel").value = school.tel;
-                document.getElementById("info").value = school.info;
+        });
+
+        var vue2 = new Vue({
+            el: "#edit",
+            data: {
+                school: {
+                    id: null,
+                    name: "",
+                    address: "",
+                    tel: "",
+                    info: ""
+                }
+            },
+            methods: {
+                confirmSchool: function () {
+                    this.school.id = document.getElementById("id").value;
+                    this.school.name = document.getElementById("name").value;
+                    this.school.address = document.getElementById("addr").value;
+                    this.school.tel = document.getElementById("tel").value;
+                    this.school.info = document.getElementById("info").value;
+
+                    // console.log(this.book1.id)
+                    // console.log(document.getElementById("id").value);
+                    axios.put("https://localhost:8080/api/v1/schools/update", this.school)
+                        .then(res => {
+                            // console.log(res.data)
+                            cancelEdit();
+                            alert("Edit Success");
+                            window.location.reload();
+                        })
+                        .catch(err => {
+                            console.error(err);
+                        })
+                }
             }
-        },
-    });
-
-    var vue2 = new Vue({
-        el: "#edit",
-        data: {
-            school: {
-                id: null,
-                name: "",
-                address: "",
-                tel: "",
-                info: ""
-            }
-        },
-        methods: {
-            confirmSchool: function () {
-                this.school.id = document.getElementById("id").value;
-                this.school.name = document.getElementById("name").value;
-                this.school.address = document.getElementById("addr").value;
-                this.school.tel = document.getElementById("tel").value;
-                this.school.info = document.getElementById("info").value;
-
-                // console.log(this.book1.id)
-                // console.log(document.getElementById("id").value);
-                axios.put("https://localhost:8080/api/v1/schools/update", this.school)
-                    .then(res => {
-                        // console.log(res.data)
-                        cancelEdit();
-                        alert("Edit Success");
-                        window.location.reload();
-                    })
-                    .catch(err => {
-                        console.error(err);
-                    })
-            }
-        }
-    })
+        })
 
 
-</script>
+    </script>
 
 </body>
 

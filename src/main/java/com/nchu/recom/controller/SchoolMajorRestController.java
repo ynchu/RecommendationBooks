@@ -71,6 +71,29 @@ public class SchoolMajorRestController {
         return new ResponseEntity<>(schools, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<Collection<School>> getSchoolMajorById(@PathVariable int id){
+        Collection<School> schools;
+        schools = sService.findSchoolById(id);
+
+        Map<Integer, Major> majorMap = new HashMap<>();
+        Collection<Major> majors = mService.getAllMajors();
+        for (Major major:majors){
+            majorMap.put(major.getId(),major);
+        }
+
+        for (School school:schools){
+            Collection<SchoolMajor> schoolMajors = school.getSchoolMajors();
+            Collection<Major> ma = new ArrayList<>();
+            for (SchoolMajor sm:schoolMajors){
+                ma.add(majorMap.get(sm.getMajor_id()));
+            }
+            school.setMajors(ma);
+        }
+
+        return new ResponseEntity<>(schools,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/insert",method = RequestMethod.POST,produces = "application/json")
     public Boolean insertSchoolMajor(@RequestBody SchoolMajor schoolMajor){
         System.out.println("insert major in School " + schoolMajor.getSchool_id());

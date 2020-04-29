@@ -1,4 +1,4 @@
-POST https://localhost:8080/api/v1/books
+POST https://localhost:8080/api/v1/books/insert
 Content-Type: application/json
 
 {
@@ -10,18 +10,18 @@ Content-Type: application/json
   "local_url": "",
   "price": 114514.1919,
   "type": "TJ",
-  "upper": "Admin421",
+  "upper": "Admin",
   "viewed": 0,
   "cover": "images/lucky.png",
   "status": "0"
 }
 
 ###
-GET https://localhost:8080/api/v1/books?name=入门
+GET https://localhost:8080/api/v1/books
 Accept: application/json
 
 ###
-DELETE https://localhost:8080/api/v1/books/delete?id=
+DELETE https://localhost:8080/api/v1/books/delete?id=12148
 Content-Type: application/json
 
 

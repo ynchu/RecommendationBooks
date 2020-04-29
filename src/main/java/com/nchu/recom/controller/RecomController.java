@@ -2,10 +2,7 @@ package com.nchu.recom.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Administrator
@@ -96,6 +93,11 @@ public class RecomController {
     public String schools(){
         return "setting/school/schoolList";
     }
+
+//    @RequestMapping("/schools/{id}")
+//    public String schoolsById(@PathVariable int id){
+//        return "setting/school/???";
+//    }
 
     @RequestMapping("/schools/add")
     public String schoolsAdd(){

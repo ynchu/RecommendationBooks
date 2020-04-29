@@ -20,6 +20,13 @@ public interface SchoolService {
     public Collection<School> findSchoolByName(String name);
 
     /**
+     * 获取指定id的学校
+     * @param id 学校id
+     * @return Collection<School>
+     */
+    public Collection<School> findSchoolById(int id);
+
+    /**
      * 添加新的学校实体
      * @param school 学校实体
      * @return School
