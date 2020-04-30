@@ -21,6 +21,22 @@ public interface MajorRepository extends CrudRepository<Major, Integer> {
     Collection<Major> findByName(@Param("name") String name);
 
     /**
+     *
+     * @param id
+     * @return
+     */
+    @Query("select * from major where id=:id")
+    Collection<Major> findById(@Param("id") int id);
+
+    /**
+     * 获取指定学校不包含的专业集合
+     * @param schoolId 学校id
+     * @return Collection<Major>
+     */
+    @Query("select * from major where id not in (select major_id from school_major where school_id=:Sid)")
+    Collection<Major> findByIdNotInSchool(@Param("Sid") int schoolId);
+
+    /**
      * 更新指定id的专业信息
      * @param name 更新后专业名称
      * @param info 更新后专业详细

@@ -56,7 +56,10 @@
                         v-on:click.prevent="editMajor(major,index)">Edit
                 </button>
                 <button id="btn_del" class="btn btn-warning" v-on:click="deletMajor(major,index)">Delete</button>
-                <button id="btn_det" class="btn btn-link">Detail</button>
+                <!-- <button id="btn_det" class="btn btn-link">Detail</button> -->
+                <a :href="'/majors/'+major.id">
+                    <button id="btn_det" class="btn btn-link">Detail</button>
+                </a>
             </td>
         </tr>
         </tbody>

@@ -1,6 +1,7 @@
 package com.nchu.recom.repository;
 
 import com.nchu.recom.domain.Course;
+import com.nchu.recom.domain.Major;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -20,6 +21,13 @@ public interface CourseRepository extends CrudRepository<Course, Integer> {
     @Query("select * form course where name like :name")
     Collection<Course> findByName(@Param("name") String name);
 
+    /**
+     * 获取指定学校不包含的专业集合
+     * @param MajorId 学校id
+     * @return Collection<Major>
+     */
+    @Query("select * from course where id not in (select course_id from major_course where major_id=:Mid)")
+    Collection<Course> findByIdNotInMajor(@Param("Mid") int MajorId);
 
     /**
      * 更新指定id的课程信息

@@ -20,6 +20,13 @@ public interface CourseService {
     public Collection<Course> findCourseByName(String name);
 
     /**
+     *
+     * @param id
+     * @return
+     */
+    public Collection<Course> findByIdNotInMajor(int id);
+
+    /**
      * 添加新的课程
      * @param course 新的课程实体
      * @return Course

@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Detail</title>
-    <title>School List</title>
+    <title>Major Detail</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -13,31 +12,31 @@
 <body>
     <div id="app">
         <h2>
-            <span v-text="school.name"></span>
-            <span>包含专业情况</span>
+            <span v-text="major.name"></span>
+            <span>包含课程情况</span>
         </h2>
         <div style="display: flex">
             <div style="margin-right: 40px;">
 
-                <button class="btn btn-success ml-2" id="btn_ser" v-on:click.prevent="findAllSchoolMajors" hidden>
+                <button class="btn btn-success ml-2" id="btn_ser" v-on:click.prevent="findAllMajorCourses" hidden>
                 </button>
-                <button class="btn btn-success ml-2" id="btn_ser1" v-on:click.prevent="findAllMajors" hidden>
+                <button class="btn btn-success ml-2" id="btn_ser1" v-on:click.prevent="findAllCourses" hidden>
                 </button>
 
-                <span>已有专业</span>
+
                 <table class="table table-striped">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>Major Name</th>
+                            <th>Course Name</th>
                             <th>Opera</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(major,index) in school.majors">
-                            <td v-text="major.name"></td>
+                        <tr v-for="(course,index) in major.courses">
+                            <td v-text="course.name"></td>
                             <td>
                                 <button id="btn_del" class="btn btn-warning"
-                                    v-on:click="deleteMajor(major,index)">Delete
+                                    v-on:click="deleteCourse(course,index)">Delete
                                 </button>
                             </td>
                         </tr>
@@ -45,20 +44,19 @@
                 </table>
             </div>
             <div>
-                <span>未有专业</span>
                 <table class="table table-striped table-inverse table-responsive">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>Major Name</th>
+                            <th>Course Name</th>
                             <th>Opera</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(mmajor,index) in allMajors">
-                            <td v-text="mmajor.name"></td>
+                        <tr v-for="(ccourse,index) in allCourses">
+                            <td v-text="ccourse.name"></td>
                             <td>
                                 <button id="btn_inp" class="btn btn-warning"
-                                    v-on:click="addMajor2School(mmajor,index)">Input
+                                    v-on:click="addCourse2Major(ccourse,index)">Input
                                 </button>
                             </td>
                         </tr>
@@ -78,53 +76,53 @@
         document.getElementById("btn_ser1").click();
     };
 
-    var schoolId = location.pathname.split('/')[2];
+    var majorId = location.pathname.split('/')[2];
 
     var vue = new Vue({
         el: "#app",
         data: {
-            school: {},
-            allMajors: [],
-            schoolMajor: {
-                school_id: "",
-                major_id: ""
+            major: {},
+            allCourses: [],
+            majorCourse: {
+                major_id: "",
+                course_id:""
             }
         },
         methods: {
-            findAllSchoolMajors: function () {
+            findAllMajorCourses: function () {
                 let id = location.pathname.split('/')[2];
 
-                var url = "https://localhost:8080/api/v1/schoolMajors/" + id;
+                var url = "https://localhost:8080/api/v1/majorCourses/" + id;
                 axios.get(url)
                     .then(res => {
 
                         // console.log(res)
-                        this.school = res.data[0];
+                        this.major = res.data[0];
 
                     })
                     .catch(err => {
                         // console.error(err); 
                     })
             },
-            findAllMajors: function () {
-                let url = "https://localhost:8080/api/v1/majors/" + schoolId;
+            findAllCourses: function () {
+                let url = "https://localhost:8080/api/v1/courses/" + majorId;
                 axios.get(url)
                     .then(res => {
                         // console.log(res)
-                        this.allMajors = res.data;
+                        this.allCourses = res.data;
                     })
                     .catch(err => {
                         console.error(err);
                     })
             },
-            deleteMajor: function (major, index) {
+            deleteCourse: function (course, index) {
                 if (window.confirm("delete?")) {
 
-                    let id = major.id;
-                    axios.delete("https://localhost:8080/api/v1/schoolMajors/delete", {
+                    let id = course.id;
+                    axios.delete("https://localhost:8080/api/v1/majorCourses/delete", {
                         params: {
-                            school_id: schoolId,
-                            major_id: id
+                            major_id: majorId,
+                            course_id:id
                         }
                     })
                         .then(res => {
@@ -141,13 +139,13 @@
                 }
 
             },
-            addMajor2School: function (major, index) {
-                let id = major.id;
+            addCourse2Major: function (course, index) {
+                let id = course.id;
 
-                this.schoolMajor.school_id = schoolId;
-                this.schoolMajor.major_id = id;
+                this.majorCourse.major_id = majorId;
+                this.majorCourse.course_id = id;
 
-                axios.post("https://localhost:8080/api/v1/schoolMajors/insert", this.schoolMajor)
+                axios.post("https://localhost:8080/api/v1/majorCourses/insert", this.majorCourse)
                     .then(res => {
                         console.log(res)
                         window.location.reload();

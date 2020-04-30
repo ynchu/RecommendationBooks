@@ -38,6 +38,16 @@ public class MajorServiceImpl implements MajorService {
         return (Collection<Major>) majorRepo.findByName("%" + name + "%");
     }
 
+    @Override
+    public Collection<Major> findById(int id) {
+        return majorRepo.findById(id);
+    }
+
+    @Override
+    public Collection<Major> findByIdNotInSchool(int schoolId) {
+        return majorRepo.findByIdNotInSchool(schoolId);
+    }
+
     /**
      * 添加新的专业信息
      * @param major 新的专业实体

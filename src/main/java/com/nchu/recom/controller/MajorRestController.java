@@ -27,6 +27,13 @@ public class MajorRestController {
         return new ResponseEntity<>(majors, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<Collection<Major>> majorNotInSchool(@PathVariable int id){
+        Collection<Major> majors;
+        majors = majorService.findByIdNotInSchool(id);
+        return new ResponseEntity<>(majors,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/insert",method = RequestMethod.POST,produces = "application/json")
     public ResponseEntity<Major> addMajor(@RequestBody Major major){
         majorService.addMajor(major);

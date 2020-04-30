@@ -10,10 +10,7 @@ import com.nchu.recom.service.MajorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,6 +59,29 @@ public class MajorCourseRestController {
 
         if (majors.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(majors, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Collection<Major>> getMajorCourseById(@PathVariable int id) {
+        Collection<Major> majors;
+        majors = mService.findById(id);
+
+        Map<Integer, Course> courseMap = new HashMap<>();
+        Collection<Course> courses = cService.getAllCourse();
+        for (Course course : courses) {
+            courseMap.put(course.getId(), course);
+        }
+
+        for (Major major : majors) {
+            Collection<MajorCourse> majorCourses = major.getMajorCourses();
+            Collection<Course> co = new ArrayList<>();
+            for (MajorCourse mc : majorCourses) {
+                co.add(courseMap.get(mc.getCourse_id()));
+            }
+            major.setCourses(co);
         }
 
         return new ResponseEntity<>(majors, HttpStatus.OK);

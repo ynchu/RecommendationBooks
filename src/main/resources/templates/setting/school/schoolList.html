@@ -61,7 +61,7 @@
                         </button>
                         <button id="btn_del" class="btn btn-warning"
                             v-on:click="deleteSchool(school,index)">Delete</button>
-                        <a href="">
+                        <a :href="'/schools/'+school.id">
                             <button id="btn_det" class="btn btn-link">Detail</button>
                         </a>
                     </td>
@@ -142,7 +142,6 @@
                             // console.error(err);
                         })
                 },
-
                 deleteSchool: function (school, index) {
                     let id = school.id;
                     // console.log(user.id);

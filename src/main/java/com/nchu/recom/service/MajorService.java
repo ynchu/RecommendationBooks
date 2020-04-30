@@ -20,6 +20,20 @@ public interface MajorService {
     public Collection<Major> findMajorByName(String name);
 
     /**
+     *
+     * @param id
+     * @return
+     */
+    public Collection<Major> findById(int id);
+
+    /**
+     *
+     * @param schoolId
+     * @return
+     */
+    public Collection<Major> findByIdNotInSchool(int schoolId);
+
+    /**
      * 添加新的专业
      * @param major 新的专业实体
      * @return Major

@@ -94,10 +94,15 @@ public class RecomController {
         return "setting/school/schoolList";
     }
 
-//    @RequestMapping("/schools/{id}")
-//    public String schoolsById(@PathVariable int id){
-//        return "setting/school/???";
-//    }
+    @RequestMapping("/schools/{id}")
+    public String schoolsById(@PathVariable int id){
+        return "setting/school/schoolDetail";
+    }
+
+    @RequestMapping("/majors/{id}")
+    public String majorById(@PathVariable int id){
+        return "setting/major/majorDetail";
+    }
 
     @RequestMapping("/schools/add")
     public String schoolsAdd(){

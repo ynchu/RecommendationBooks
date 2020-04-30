@@ -38,6 +38,11 @@ public class CourseServiceImpl implements CourseService {
         return (Collection<Course>) courseRepo.findByName("%" + name + "%");
     }
 
+    @Override
+    public Collection<Course> findByIdNotInMajor(int id) {
+        return courseRepo.findByIdNotInMajor(id);
+    }
+
     /**
      * 添加新的课程实体
      * @param course 新的课程实体

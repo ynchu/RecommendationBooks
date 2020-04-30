@@ -28,6 +28,13 @@ public class CourseRestController {
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET,produces = "application/json")
+    public ResponseEntity<Collection<Course>> courseNotInMajor(@PathVariable int id){
+        Collection<Course> courses;
+        courses = courseService.findByIdNotInMajor(id);
+        return new ResponseEntity<>(courses,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/insert",method = RequestMethod.POST,produces = "application/json")
     public ResponseEntity<Course> addCourse(@RequestBody Course course){
         courseService.addCourse(course);
