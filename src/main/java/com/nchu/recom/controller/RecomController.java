@@ -30,13 +30,13 @@ public class RecomController {
     @GetMapping("/tongzhi")
     private String getBroadcast(Model model) {
         System.out.println("通知");
-        return "tongzhi";
+        return "setting/broadcast/tongzhi";
     }
 
     @RequestMapping(value = "/xinjiantongzhi", method = RequestMethod.GET)
     public String newBroadcast() {
         System.out.println("新建通知");
-        return "xinjiantongzhi";
+        return "setting/broadcast/xinjiantongzhi";
     }
 
     @RequestMapping(value = "/shangchuanbadword", method = RequestMethod.GET)
