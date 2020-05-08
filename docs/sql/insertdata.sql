@@ -94,6 +94,10 @@ INSERT INTO book_comment(book_id, user_id, comment_content, comment_date, status
 VALUES (12121, 2, 'dsabvhjbcnbxdfththdhghghbvuiv zcjxzjgybxvut', CURRENT_TIMESTAMP, 1);
 INSERT INTO book_comment(book_id, user_id, comment_content, comment_date, status)
 VALUES (12121, 3, 'dgggdgfjryansbtgbnttxbxjfhjcbbvuiv zcjxzjgybxvut', CURRENT_TIMESTAMP, 1);
+INSERT INTO book_comment(book_id, user_id, comment_content, comment_date, status)
+VALUES (12121, 3, 'dgggdgfjryansbtgbnttxbxjfhjcbbvuiv zcjxzjgybxvut', CURRENT_TIMESTAMP, 0);
+INSERT INTO book_comment(book_id, user_id, comment_content, comment_date, status)
+VALUES (12121, 3, 'dgggdgfjryansbtgbnttxbxjfhjcbbvuiv zcjxzjgybxvut', CURRENT_TIMESTAMP, 2);
 
 
 INSERT INTO course

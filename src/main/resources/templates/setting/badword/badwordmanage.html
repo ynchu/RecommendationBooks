@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传违规词</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+
+    <style>
+        body {
+            margin: 5px auto;
+            padding: 0;
+            background-color: #F1F1F1;
+        }
+
+        label {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            background-color: #F69;
+            display: table-cell;
+            vertical-align: middle
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+    <div class="container">
+        <!--搜索栏Start-->
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label for="theme"></label><input type="text" class="form-control shadow" name="" id="theme"
+                                                      maxlength="40" v-model="keyWord" placeholder="请输入关键字">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <button id="search" type="button" class="btn btn-primary" v-on:click.prevent="findBadWords">Search
+                </button>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <!--搜索栏End-->
+
+        <!-- 修改完成返回提示框 -->
+        <div id="alert" class="alert alert-success alert-dismissible fade show" role="alert"
+             v-bind:class="{'alert-danger': state === 2, 'alert-success': state === 1, 'invisible': state === 0}">
+            <button type="button" class="close" aria-label="Close" onclick="$('#alert').hide();">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong v-text="alertMessage"></strong>
+        </div>
+
+        <!-- 表格 -->
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th style="width: 10%;">序号</th>
+                        <th style="width: 65%;">违规词</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(badWord,index) in badWords">
+                        <th scope="row" v-text="index+1"></th>
+                        <td style="text-align: left;">
+                            <strong v-text="badWord.vicWord"></strong>
+                        </td>
+                        <td style="text-align: center;">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModalCenter" v-on:click.prevent="editUpdate(badWord)">
+                                修改
+                            </button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#deleteModalCenter" v-on:click.prevent="editDelete(badWord)">
+                                删除
+                            </button>
+                            <!-- <button type="button" class="btn btn-warning"
+                v-on:click.prevent="deleteBadWord(badWord)">删除</button> -->
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 修改违规词 -->
+        <div class="row">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">修改违规词中...</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">原违规词</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Username" disabled
+                                       v-model="updateBadWord.oldVioDic.vicWord" aria-describedby="basic-addon1">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon2">修改后的违规词</span>
+                                </div>
+                                <input id="editNew" type="text" class="form-control" aria-label="Username"
+                                       maxlength="32" v-model="updateBadWord.newVioDic.vicWord"
+                                       aria-describedby="basic-addon2">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary"
+                                    v-on:click.prevent="updateBadWordOption">保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 删除确认框 -->
+        <div class="row">
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle2">删除违规词中...</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3">需要删除的违规词</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Username" disabled
+                                       v-model="deleteWord.vicWord" aria-describedby="basic-addon3">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-danger"
+                                    v-on:click.prevent="deleteBadWord(deleteWord)">确定删除
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            alertMessage: "",
+            state: 0,
+            keyWord: null,
+            deleteWord: {
+                vicWord: null
+            },
+            badWords: [],
+            updateBadWord: {
+                oldVioDic: {
+                    vicWord: null
+                },
+                newVioDic: {
+                    vicWord: null
+                }
+            }
+        },
+        methods: {
+            findBadWords: function (event) {
+                axios.get("https://localhost:8080/api/v1/vioDics", {
+                    params: {
+                        keyword: this.keyWord
+                    }
+                })
+                    .then(res => {
+                        this.badWords = res.data;
+                        this.keyWord = null;
+                    })
+                    .catch(err => {
+                        this.state = 2;
+                        this.alertMessage = err.response.data.message;
+                        this.alertShow();
+                    })
+            },
+            deleteBadWord: function (event) {
+                // if (window.confirm("确定删除？")) {
+                console.log(event);
+                $('#deleteModalCenter').modal('hide');
+                axios.post("https://localhost:8080/api/v1/vioDics/delete", event)
+                    .then(res => {
+                        this.state = 1;
+                        this.alertMessage = "删除成功";
+                        this.alertShow();
+                        $('#search').click();
+                    })
+                    .catch(err => {
+                        this.state = 2;
+                        this.alertMessage = err.response.data.message;
+                        this.alertShow();
+                    })
+                // }
+            },
+            editDelete: function (event) {
+                this.deleteWord.vicWord = event.vicWord;
+            },
+            editUpdate: function (event) {
+                this.updateBadWord.oldVioDic.vicWord = event.vicWord;
+                // 弹出后输入框获取焦点
+                $('#exampleModalCenter').on('shown.bs.modal', function (e) {     //模态框的ID
+                    $('#editNew').focus(); //通过ID找到对应输入框，让其获得焦点
+                });
+            },
+            updateBadWordOption: function (event) {
+                console.log(this.updateBadWord);
+                $('#exampleModalCenter').modal('hide');
+                axios.post("https://localhost:8080/api/v1/vioDics/update", this.updateBadWord)
+                    .then(res => {
+                        this.state = 1;
+                        this.alertMessage = "修改成功";
+                        this.alertShow();
+                        $('#search').click();
+                    })
+                    .catch(err => {
+                        this.state = 2;
+                        this.alertMessage = err.response.data.message;
+                        this.alertShow();
+                    })
+            },
+            alertShow: function () {
+                if (this.state !== 0) {
+                    $('#alert').show();
+                    // 十秒后自动隐藏提示消息
+                    setTimeout(function () {
+                        $('#alert').hide();
+                    }, 10000);
+                }
+            }
+        }
+    });
+
+    window.onload = function () {
+        $('#alert').hide();
+        $('#search').click();
+    };
+</script>
+
+</body>
+
+</html>

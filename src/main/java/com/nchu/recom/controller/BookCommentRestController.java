@@ -46,5 +46,5 @@ public class BookCommentRestController {
         return bookCommentService.updateBookComment(bookComment);
     }
 
-    // TODO
+    // TODO 删除评论没写
 }

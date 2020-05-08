@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传违规词</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+
+    <style>
+        body {
+            margin: 5px auto;
+            padding: 0;
+            background-color: #F1F1F1;
+        }
+
+        .submit {
+            width: 100px;
+            height: 35px;
+            border: none;
+            background-image: linear-gradient(120deg, #3498db, #8e44ad);
+            background-size: 200%;
+            color: #ffffff;
+            cursor: pointer;
+            transition: .5s;
+            border-radius: 5px;
+        }
+
+        .submit:hover {
+            background-position: right;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+    <div class="container">
+        <div class="column">
+            <!-- 提示框 -->
+            <div class="alert alert-primary" role="alert"
+                 v-bind:class="{'alert-danger': state === 2, 'alert-success': state === 1, 'invisible': state === 0}">
+                <strong v-text="alertMessage">primary</strong>
+            </div>
+<!--            <div class="alert alert-primary fade show" role="alert"-->
+<!--                 v-bind:class="{'alert-danger': state === 2, 'alert-success': state === 1, 'invisible': state === 0}">-->
+<!--                <button type="button" class="close" data-dismiss="alert">×</button>-->
+<!--                <strong v-text="alertMessage"></strong>-->
+<!--            </div>-->
+
+
+            <!-- 输入模式 -->
+            <div class="row">
+                <div class="form-check col-sm-12 text-center">
+                    <strong>请选择输入模式</strong>
+                    <br>
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="radio" id="radioOne" value="checkedValue"
+                               v-on:click="changeModel">
+                        一次输入一个
+                    </label>
+                    <br>
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="radio" id="radioMore"
+                               value="checkedValue" v-on:click="changeModel" checked>
+                        一次输入多个
+                    </label>
+                </div>
+            </div>
+            <br>
+
+            <!-- 一次输入一个 -->
+            <div class="row" id="rowOne">
+                <div class="col-sm-1"></div>
+                <div class="form-group col-sm-10 text-center">
+                    <label for="">请输入违规词（一次一个）</label>
+                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                           placeholder="请输入违规词（一次一个）" v-model="oneWord.vicWord" maxlength="32">
+                </div>
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-default submit" v-on:click.prevent="addBadWordOne">发送
+                    </button>
+                </div>
+            </div>
+
+            <!-- 一次输入多个 -->
+            <div class="row" id="rowMore">
+                <div class="col-sm-1"></div>
+                <div class="form-group col-sm-10 text-center">
+                    <label for="">请输入违规词（一行一个）</label>
+                    <textarea class="form-control" name="" id="" rows="10" placeholder="请输入违规词（一次一个）"
+                              v-model="moreWordTotal" maxlength="1024"></textarea>
+                </div>
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-default submit"
+                            v-on:click.prevent="addBadWordMore(moreWordTotal)">发送
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            oneWord: {
+                vicWord: null
+            },
+            moreWord: [],
+            moreWordTotal: null,
+            alertMessage: null,
+            state: 0
+        },
+        methods: {
+            changeModel: function (event) {
+                let id = event.currentTarget.id;
+                if (id === "radioOne") {
+                    $("#rowOne").show();
+                    $("#rowMore").hide();
+                    this.oneWord.vicWord = "";
+                } else if (id === "radioMore") {
+                    $("#rowOne").hide();
+                    $("#rowMore").show();
+                    this.oneWord.vicWord = "";
+                }
+            },
+            addBadWordOne: function (event) {
+                axios.post("https://localhost:8080/api/v1/vioDics/insert", this.oneWord)
+                    .then(res => {
+                        this.alertMessage = "提交成功";
+                        this.state = 1;
+                        this.oneWord.vicWord = "";
+                    })
+                    .catch(err => {
+                        this.alertMessage = err.response.data.message;
+                        this.state = 2;
+                        this.oneWord.vicWord = "";
+                    })
+            },
+            addBadWordMore: function (event) {
+                let vicWordArr = event.split('\n');
+                console.log(vicWordArr);
+                vicWordArr.forEach(function (item, index) {
+                    if ("" !== item.trim()) {
+                        let word = {vicWord: item.trim()};
+                        vue.moreWord.push(word);
+                    }
+                });
+                console.log(this.moreWord);
+                axios.post("https://localhost:8080/api/v1/vioDics/insertMore", this.moreWord)
+                    .then(res => {
+                        this.alertMessage = "提交成功";
+                        this.state = 1;
+                        this.moreWordTotal = "";
+                    })
+                    .catch(err => {
+                        this.alertMessage = err.response.data.message;
+                        this.state = 2;
+                        this.moreWordTotal = "";
+                    })
+            }
+        }
+    });
+
+    window.onload = function () {
+        $("#rowOne").hide();
+        $("#rowMore").show();
+    };
+</script>
+
+</body>
+
+</html>

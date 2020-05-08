@@ -1,9 +1,9 @@
 package com.nchu.recom.service;
 
 import com.nchu.recom.domain.VioDic;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface VioDicService {
     /**
@@ -28,6 +28,14 @@ public interface VioDicService {
      * @return Boolean
      */
     Boolean insertVioDic(VioDic vioDic);
+
+    /**
+     * 添加违规词
+     *
+     * @param vioDicList 违规词列表
+     * @return Boolean
+     */
+    Boolean insertVioDicList(List<VioDic> vioDicList);
 
     /**
      * 删除违规词

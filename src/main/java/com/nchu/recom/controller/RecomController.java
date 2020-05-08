@@ -48,7 +48,13 @@ public class RecomController {
     @RequestMapping(value = "/badwordmanage", method = RequestMethod.GET)
     public String badWordManage() {
         System.out.println("违规词管理");
-        return "badwordmanage";
+        return "setting/badword/badwordmanage";
+    }
+
+    @RequestMapping(value = "/badwordupload", method = RequestMethod.GET)
+    public String badWordUpload() {
+        System.out.println("违规词上传");
+        return "setting/badword/badwordupload";
     }
 
     @RequestMapping(value = "/commentsmanage", method = RequestMethod.GET)
@@ -63,69 +69,64 @@ public class RecomController {
         return "uploadbookmanage";
     }
 
-    @RequestMapping(value = "/badwordupload", method = RequestMethod.GET)
-    public String badWordUpload() {
-        System.out.println("违规词上传");
-        return "badwordupload";
-    }
 
     @RequestMapping("/books")
-    public String books(){
+    public String books() {
         return "setting/books/bookList";
     }
 
     @RequestMapping("/books/add")
-    public String bookAdd(){
+    public String bookAdd() {
         return "setting/books/bookAdd";
     }
 
     @RequestMapping("/users")
-    public String users(){
+    public String users() {
         return "setting/users/userList";
     }
 
     @RequestMapping("/users/add")
-    public String usersAdd(){
+    public String usersAdd() {
         return "setting/users/userAdd";
     }
 
     @RequestMapping("/schools")
-    public String schools(){
+    public String schools() {
         return "setting/school/schoolList";
     }
 
     @RequestMapping("/schools/{id}")
-    public String schoolsById(@PathVariable int id){
+    public String schoolsById(@PathVariable int id) {
         return "setting/school/schoolDetail";
     }
 
     @RequestMapping("/majors/{id}")
-    public String majorById(@PathVariable int id){
+    public String majorById(@PathVariable int id) {
         return "setting/major/majorDetail";
     }
 
     @RequestMapping("/schools/add")
-    public String schoolsAdd(){
+    public String schoolsAdd() {
         return "setting/school/schoolAdd";
     }
 
     @RequestMapping("/majors")
-    public String majors(){
+    public String majors() {
         return "setting/major/majorList";
     }
 
     @RequestMapping("/majors/add")
-    public String majorsAdd(){
+    public String majorsAdd() {
         return "setting/major/majorAdd";
     }
 
     @RequestMapping("/courses")
-    public String courses(){
+    public String courses() {
         return "setting/courses/coursesList";
     }
 
     @RequestMapping("/courses/add")
-    public String courseAdd(){
+    public String courseAdd() {
         return "setting/courses/coursesAdd";
     }
 }

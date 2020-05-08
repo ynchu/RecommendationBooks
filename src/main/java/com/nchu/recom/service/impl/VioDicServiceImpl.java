@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class VioDicServiceImpl implements VioDicService {
@@ -47,6 +48,21 @@ public class VioDicServiceImpl implements VioDicService {
     @Override
     public Boolean insertVioDic(VioDic vioDic) {
         return vioDicRepository.insertVioDic(vioDic.getVicWord());
+    }
+
+    /**
+     * 添加违规词
+     *
+     * @param vioDicList 违规词列表
+     * @return Boolean
+     */
+    @Override
+    public Boolean insertVioDicList(List<VioDic> vioDicList) {
+        boolean isOK = false;
+        for (VioDic vioDic : vioDicList) {
+            isOK = vioDicRepository.insertVioDic(vioDic.getVicWord());
+        }
+        return isOK;
     }
 
     /**

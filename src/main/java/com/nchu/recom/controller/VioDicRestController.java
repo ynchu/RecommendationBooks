@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 
 @Api("This is a RESTful Controller Demo")
 @CrossOrigin
@@ -33,11 +34,17 @@ public class VioDicRestController {
         }
         return new ResponseEntity<Collection<VioDic>>(vioDics, HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/insert", method = RequestMethod.POST, produces = "application/json")
     public Boolean insertVioDic(@Valid @RequestBody VioDic vioDic) {
         System.out.println("添加违规词");
         return vioDicService.insertVioDic(vioDic);
+    }
+
+    @RequestMapping(value = "/insertMore", method = RequestMethod.POST, produces = "application/json")
+    public Boolean insertVioDic(@Valid @RequestBody List<VioDic> vioDicList) {
+        System.out.println("添加违规词列表");
+        return vioDicService.insertVioDicList(vioDicList);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
