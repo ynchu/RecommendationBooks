@@ -39,11 +39,11 @@ public class RecomController {
         return "setting/broadcast/xinjiantongzhi";
     }
 
-    @RequestMapping(value = "/shangchuanbadword", method = RequestMethod.GET)
-    public String updateBadWord() {
-        System.out.println("上传违规词");
-        return "shangchuanbadword";
-    }
+//    @RequestMapping(value = "/shangchuanbadword", method = RequestMethod.GET)
+//    public String updateBadWord() {
+//        System.out.println("上传违规词");
+//        return "shangchuanbadword";
+//    }
 
     @RequestMapping(value = "/badwordmanage", method = RequestMethod.GET)
     public String badWordManage() {
@@ -60,13 +60,25 @@ public class RecomController {
     @RequestMapping(value = "/commentsmanage", method = RequestMethod.GET)
     public String commentsManage() {
         System.out.println("评论管理");
-        return "commentsmanage";
+        return "setting/bookComment/commentManage";
     }
 
-    @RequestMapping(value = "/uploadbookmanage", method = RequestMethod.GET)
+//    @RequestMapping(value = "/commentsmanage", method = RequestMethod.GET)
+//    public String commentsManage() {
+//        System.out.println("评论管理");
+//        return "commentsmanage";
+//    }
+
+    @RequestMapping(value = "/uploadBookManage", method = RequestMethod.GET)
     public String uploadBookManage() {
         System.out.println("审核上传书籍管理");
-        return "uploadbookmanage";
+        return "setting/checkBooks/checkBooks";
+    }
+
+    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    public String uploadBookManageCheck() {
+        System.out.println("审核上传书籍管理");
+        return "setting/checkBooks/checkItem";
     }
 
 

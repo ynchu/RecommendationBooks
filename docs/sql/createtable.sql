@@ -83,7 +83,7 @@ CREATE TABLE major_course
 (
     major_id  int NULL,
     course_id int NULL,
-    primary key (major_id,course_id),
+    primary key (major_id, course_id),
     CONSTRAINT major_course_course_course_id_fk
         FOREIGN KEY (course_id) REFERENCES course (id)
             ON UPDATE CASCADE ON DELETE CASCADE,
@@ -109,7 +109,7 @@ CREATE TABLE school_major
 (
     school_id int NULL,
     major_id  int NULL,
-    primary key (school_id,major_id),
+    primary key (school_id, major_id),
     CONSTRAINT school_major_major_major_id_fk
         FOREIGN KEY (major_id) REFERENCES major (id)
             ON UPDATE CASCADE ON DELETE CASCADE,
@@ -139,16 +139,16 @@ DROP TABLE IF EXISTS book;
 CREATE TABLE book
 (
     id        int PRIMARY KEY AUTO_INCREMENT,
-    name      varchar(16)                               NULL,
-    publish   varchar(16)                               NULL,
-    isbn      char(17)                                  NULL,
-    writer    varchar(16)                               NULL,
-    local_url varchar(64)                               NULL,
-    price     float                                     NULL,
-    type      char(32)                                  NULL,
-    upper     char(6)                                   NULL,
-    viewed    int                                       NULL,
-    cover     varchar(256) DEFAULT 'images/default.png' NULL,
+    name      varchar(16)                                         NULL,
+    publish   varchar(16)                                         NULL,
+    isbn      char(17)                                            NULL,
+    writer    varchar(16)                                         NULL,
+    local_url varchar(1024)                                       NULL,
+    price     float                                               NULL,
+    type      char(32)                                            NULL,
+    upper     char(6)                                             NULL,
+    viewed    int                                                 NULL,
+    cover     varchar(256) DEFAULT 'resources/images/default.png' NULL,
     status    int          DEFAULT 0
 );
 
