@@ -50,4 +50,15 @@ public class BookCommentServiceImpl implements BookCommentService {
         return bookCommentRepository.updateBookComment(bookComment.getCommentId(), bookComment.getBookId(),
                 bookComment.getUserId(), bookComment.getCommentContent(), bookComment.getCommentDate(), bookComment.getStatus());
     }
+
+    /**
+     * 通过评论id删除评论
+     *
+     * @param bookComment BookComment
+     * @return Boolean
+     */
+    @Override
+    public Boolean deleteBookCommentByCommentId(BookComment bookComment) {
+        return bookCommentRepository.deleteBookCommentByCommentId(bookComment.getCommentId());
+    }
 }

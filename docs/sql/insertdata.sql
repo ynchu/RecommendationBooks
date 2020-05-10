@@ -29,49 +29,49 @@ VALUES (3, 2);
 # VALUES ('java');
 
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12121, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-7', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'PHP',
+VALUES (12121, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-7', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'PHP',
         '123458', 0, 'resources/images/12121.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12125, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-8', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'PHP',
+VALUES (12125, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-8', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'PHP',
         '123458', 0, 'resources/images/12125.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12126, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-9', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'PHP',
+VALUES (12126, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-9', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'PHP',
         '123458', 0, 'resources/images/12126.jpg', 0);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12127, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-0', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'PHP',
+VALUES (12127, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-0', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'PHP',
         '123458', 0, 'resources/images/12127.jpg', 0);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12128, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-1', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'PHP',
+VALUES (12128, 'PHP从入门到精通', '电子工业出版社', '978-7-302-49105-1', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'PHP',
         '123458', 0, 'resources/images/12128.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12131, 'MATLAB从入门到精通', '电子工业出版社', '978-7-302-49105-2', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5,
+VALUES (12131, 'MATLAB从入门到精通', '电子工业出版社', '978-7-302-49105-2', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5,
         'MATLAB', '123458', 0, 'resources/images/12131.jpg', 0);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12123, 'java从入门到精通', '电子工业出版社', '978-7-302-49105-3', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5,
+VALUES (12123, 'java从入门到精通', '电子工业出版社', '978-7-302-49105-3', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5,
         'JAVA', '123458', 0, 'resources/images/12123.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12124, 'SQL从入门到精通', '电子工业出版社', '978-7-302-49105-4', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'SQL',
+VALUES (12124, 'SQL从入门到精通', '电子工业出版社', '978-7-302-49105-4', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'SQL',
         '123458', 0, 'resources/images/12124.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12141, '四级语法', '电子工业出版社', '978-7-302-49105-5', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'English',
+VALUES (12141, '四级语法', '电子工业出版社', '978-7-302-49105-5', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'English',
         '123458', 0, 'resources/images/12141.jpg', 0);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12142, '听力专项训练', '电子工业出版社', '978-7-302-49105-6', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5,
+VALUES (12142, '听力专项训练', '电子工业出版社', '978-7-302-49105-6', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5,
         'English', '123458', 0, 'resources/images/12142.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12143, '四级词汇', '电子工业出版社', '978-7-102-49105-7', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'English',
+VALUES (12143, '四级词汇', '电子工业出版社', '978-7-102-49105-7', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'English',
         '123458', 0, 'resources/images/12143.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12144, '四级词汇乱序', '电子工业出版社', '978-7-202-49105-7', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5,
+VALUES (12144, '四级词汇乱序', '电子工业出版社', '978-7-202-49105-7', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5,
         'English', '123458', 0, 'resources/images/12144.jpg', 0);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12145, '英文观止', '电子工业出版社', '978-7-302-49105-7', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'English',
+VALUES (12145, '英文观止', '电子工业出版社', '978-7-302-49105-7', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'English',
         '123458', 0, 'resources/images/12145.jpg', 1);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12146, '词汇突破', '电子工业出版社', '978-7-402-49105-7', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5, 'English',
+VALUES (12146, '词汇突破', '电子工业出版社', '978-7-402-49105-7', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5, 'English',
         '123458', 0, 'resources/images/12146.jpg', 0);
 INSERT INTO book(id, name, publish, isbn, writer, local_url, price, type, upper, viewed, cover, status)
-VALUES (12147, '科技英语创新教程', '电子工业出版社', '978-7-502-49105-7', '祝永志', 'http://nishikinowuzhu.cn/ytm/test.pdf', 55.5,
+VALUES (12147, '科技英语创新教程', '电子工业出版社', '978-7-502-49105-7', '祝永志', 'http://tns.thss.tsinghua.edu.cn/lbcbook/resources/%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E7%AC%AC%E4%B8%80%E7%AB%A0.pdf', 55.5,
         'English', '123458', 0, 'resources/images/12147.jpg', 1);
 
 INSERT INTO Book_Score(book_id, user_id, score)

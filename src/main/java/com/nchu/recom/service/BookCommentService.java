@@ -28,5 +28,13 @@ public interface BookCommentService {
      */
     Boolean updateBookComment(BookComment bookComment);
 
+    /**
+     * 通过评论id删除评论
+     *
+     * @param bookComment BookComment
+     * @return Boolean
+     */
+    Boolean deleteBookCommentByCommentId(BookComment bookComment);
+
     // TODO
 }

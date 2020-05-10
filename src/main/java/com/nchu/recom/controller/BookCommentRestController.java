@@ -46,5 +46,11 @@ public class BookCommentRestController {
         return bookCommentService.updateBookComment(bookComment);
     }
 
+    @RequestMapping(value = "/delete", method = RequestMethod.POST, produces = "application/json")
+    public Boolean deleteBookCommentByCommentId(@Valid @RequestBody BookComment bookComment) {
+        System.out.println("删除评论");
+        return bookCommentService.deleteBookCommentByCommentId(bookComment);
+    }
+
     // TODO 删除评论没写
 }

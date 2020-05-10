@@ -5,9 +5,11 @@ import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+@Repository
 public interface VioDicRepository extends CrudRepository<VioDic, String> {
     /**
      * 根据关键字查询违规词

@@ -29,6 +29,7 @@ public class UserRestController {
             users = userService.getAllUsers();
         } else {
             System.out.println("根据昵称查询用户");
+            System.out.println(name );
             users = userService.findByName(name);
         }
         return new ResponseEntity<Collection<User>>(users, HttpStatus.OK);

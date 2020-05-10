@@ -49,5 +49,14 @@ public interface BookCommentRepository extends CrudRepository<BookComment, Integ
                               @Param("commentDate") Timestamp commentDate,
                               @Param("status") int status);
 
+    /**
+     * 通过评论Id删除评论
+     *
+     * @return Boolean
+     */
+    @Modifying
+    @Query("DELETE FROM book_comment WHERE comment_id = :commentId;")
+    Boolean deleteBookCommentByCommentId(@Param("commentId") int commentId);
+
     // TODO
 }

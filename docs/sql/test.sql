@@ -221,6 +221,10 @@ SET book_id         = 12141,
     status          = 1
 WHERE comment_id = 1;
 
+DELETE
+FROM book_comment
+WHERE comment_id = 1;
+
 
 # 删
 DELETE
