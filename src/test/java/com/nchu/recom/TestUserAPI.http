@@ -1,0 +1,160 @@
+POST https://localhost:8080//api/v1/vioDics/delete
+Content-Type: application/json
+
+{
+  "vicWord": "违规词454"
+}
+
+###
+POST https://localhost:8080//api/v1/vioDics/update
+Content-Type: application/json
+
+{
+  "oldVioDic": {
+    "vicWord": "违规词454545"
+  },
+  "newVioDic": {
+    "vicWord": "违规词454"
+  }
+}
+
+###
+POST https://localhost:8080//api/v1/vioDics/insert
+Content-Type: application/json
+
+{
+  "vicWord": "违规词454545"
+}
+
+###
+GET https://localhost:8080//api/v1/vioDics?keyword=2
+Accept: application/json
+
+###
+GET https://localhost:8080//api/v1/vioDics
+Content-Type: application/json
+
+
+###
+POST https://localhost:8080//api/v1/broadcastLink/delete
+Content-Type: application/json
+
+{
+  "userId": 14,
+  "broadcastId": "e2ef4090-9edd-4464-8605-212183b880e7"
+}
+
+###
+POST https://localhost:8080//api/v1/broadcastLink/insert
+Content-Type: application/json
+
+{
+  "userId": 14,
+  "broadcastId": "e2ef4090-9edd-4464-8605-212183b880e7"
+}
+
+###
+GET https://localhost:8080//api/v1/broadcastLink
+Accept: application/json
+
+###
+POST https://localhost:8080//api/v1/broadcasts/delete
+Content-Type: application/json
+
+{
+  "id": "8cfda30e-1ea9-48bd-b5b3-86cd895b6627",
+  "userId": 1,
+  "content": "主题segment内容",
+  "time": "2020-05-10T03:34:12.000+0000"
+}
+
+###
+POST https://localhost:8080//api/v1/broadcasts/update
+Content-Type: application/json
+
+{
+  "id": "ccffdb3d-0b03-42bb-add2-036dabb16466",
+  "userId": 1,
+  "content": "第一封信segment大地飞歌",
+  "time": "2020-05-09T08:38:13.000+0000"
+}
+
+###
+POST https://localhost:8080//api/v1/broadcasts/insert
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "content": "主题segment内容",
+  "time": "2020-05-09T08:38:13.000+0000"
+}
+
+###
+GET https://localhost:8080//api/v1/broadcasts?id=ccffdb3d-0b03-42bb-add2-036dabb16466
+Accept: application/json
+
+###
+GET https://localhost:8080//api/v1/broadcasts
+Accept: application/json
+
+###
+POST https://localhost:8080//api/v1/bookComments/update
+Content-Type: application/json
+
+{
+  "commentId": 3,
+  "bookId": 12121,
+  "userId": 3,
+  "commentContent": "fhjcbbvuiv zcjxzjgybxvut",
+  "commentDate": "2020-05-09T08:27:30.000+0000",
+  "status": 1
+}
+
+###
+GET https://localhost:8080//api/v1/bookComments?userId=3
+Accept: application/json
+
+###
+GET https://localhost:8080//api/v1/bookComments
+Accept: application/json
+
+
+###
+PUT https://localhost:8080/api/v1/users/update
+Content-Type: application/json
+
+{
+  "id": 14,
+  "name": "用户2",
+  "pwd": "4564878",
+  "sex": "Woman",
+  "email": "2927962422@qq.com",
+  "tel": "13839377962"
+}
+
+
+###
+POST https://localhost:8080/api/v1/users/insert
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "用户2",
+  "pwd": "124",
+  "sex": "Woman",
+  "email": "2927962422@qq.com",
+  "tel": "13839377962"
+}
+
+###
+GET https://localhost:8080/api/v1/users?name=管理员1
+Accept: application/json
+
+###
+
+
+###
+GET https://localhost:8080/api/v1/users
+Accept: application/json
+
+###
