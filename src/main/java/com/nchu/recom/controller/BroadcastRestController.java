@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -31,19 +35,26 @@ public class BroadcastRestController {
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Collection<Broadcast>> getAllBroadcasts(String id) {
         List<Broadcast> broadcasts;
-        if (id == null || "".equals(id)) {
-            System.out.println("查询全部通知");
+//        if (id == null || "".equals(id)) {
+//            System.out.println("查询全部通知");
+//            System.out.println("id = " + id);
+//            broadcasts = (List<Broadcast>) broadcastService.getAllBroadcasts();
+//        } else {
+//            try {
+//                System.out.println("根据id查询通知");
+//                System.out.println("id = " + id);
+//                broadcasts = new ArrayList<Broadcast>(Collections.singletonList(broadcastService.findById(id)));
+//            } catch (Exception e) {
+//                broadcasts = (List<Broadcast>) broadcastService.getAllBroadcasts();
+//            }
+//        }
+
+        broadcasts = (List<Broadcast>) broadcastService.getAllBroadcasts();
+        if (id != null && !"".equals(id)) {
             System.out.println("id = " + id);
-            broadcasts = (List<Broadcast>) broadcastService.getAllBroadcasts();
-        } else {
-            try {
-                System.out.println("根据id查询通知");
-                System.out.println("id = " + id);
-                broadcasts = new ArrayList<Broadcast>(Collections.singletonList(broadcastService.findById(id)));
-            } catch (Exception e) {
-                broadcasts = (List<Broadcast>) broadcastService.getAllBroadcasts();
-            }
+            broadcasts = broadcasts.stream().filter(broadcast -> broadcast.getContent().contains(id)).collect(Collectors.toList());
         }
+
         broadcasts.sort(new Comparator<Broadcast>() {
             @Override
             public int compare(Broadcast o1, Broadcast o2) {
